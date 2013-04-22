@@ -14,7 +14,7 @@ Uji Popup is a WordPress popup plugin which allown you to convert visitors on yo
 
 Features:
 
-* Popups are shown when the page the page is loaded
+* Popups are shown when the page is loaded
 * Use image ads or text ads (Flash, HTML, Images, Videos, Audio, Embed Code etc.)
 * Timer(countdown) can be enabled/disabled
 * Close/Skip button can be enabled/disabled
