@@ -3,12 +3,10 @@ jQuery( function($){
 		//WAIT TIME
 		var is_wait = ujiPopups.is_wait;
 		var is_cached = ujiPopups.is_cached;
-		if(is_wait){
-			
+		if(is_wait){	
 			setTimeout(
 			  function() 
 			  {
-				//$('#popup').fadeIn('fast');
 				open_lightbox();
 				popups_count();
 			  }, (is_wait*1000));
@@ -40,10 +38,8 @@ jQuery( function($){
 				 }
 			  });
 		}
-
 	}
 });
-
 
 function popups_count(){
 	var min_txt = (typeof(ujiPopups) !== 'undefined' && ujiPopups != null && ujiPopups.minutes) ? ujiPopups.minutes : 'min';
@@ -58,7 +54,8 @@ function popups_count(){
 					});					
 	}
 }
-//Open fancybox
+
+//Open lightbox
 function open_lightbox(){
 		//var closebut = (typeof(ujiPopups) !== 'undefined' && ujiPopups != null && ujiPopups.showclose && ujiPopups.showclose == "true") ? true : false;
 			jQuery("#popup").modal({onOpen: function (dialog) {
@@ -81,16 +78,6 @@ function open_lightbox(){
 				
 			
 }
-
-jQuery.fn.center = function () {
-    this.css("position","absolute");
-    this.css("top", Math.max(0, ((jQuery(window).height() - jQuery(this).outerHeight()) / 2) + 
-                                                jQuery(window).scrollTop()) + "px");
-    this.css("left", Math.max(0, ((jQuery(window).width() - jQuery(this).outerWidth()) / 2) + 
-                                                jQuery(window).scrollLeft()) + "px");
-    return this;
-}
-
 
 //Close Ad
 function popups_close(){

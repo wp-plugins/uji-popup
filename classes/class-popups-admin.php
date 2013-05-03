@@ -309,7 +309,8 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 		}
 		
 		add_meta_box( 'postwhere', __('Where to show', 'ujipopup'), array( &$this, 'popups_where' ), 'popups', 'normal' );
-		add_meta_box( 'styles', __('Popup Style', 'ujipopup'), array( &$this, 'popups_style' ), 'popups', 'side' );		
+		add_meta_box( 'styles', __('Popup Style', 'ujipopup'), array( &$this, 'popups_style' ), 'popups', 'side' );	
+		add_meta_box( 'getpro', __('Uji Popup Premium', 'ujinter'), array( &$this, 'popups_prover' ), 'popups', 'side' );	
 		
 	}
 	
@@ -444,6 +445,14 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
          
 	<?php
 		 echo  '<input type="hidden" name="popups_edit_nonce" value="'. wp_create_nonce( 'popups_edit_nonce' ) .'" />';	
+	}
+	
+	/**
+	 * Add HTML metaboxes
+	 * @since  1.0
+	 */
+	public function popups_prover( $post ) {
+		echo '<a href="http://www.wpmanage.com/uji-popup" target="_blank"><img src="'.plugins_url() . '/uji-popup/images/popup-premium.png" style="padding-left:2px" /></a>';
 	}
 	
 	/**
