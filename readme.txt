@@ -25,6 +25,8 @@ Features:
 * Support customize colors
 * Support for cache plugins (WP Super Cache and W3 or W3 Total Cache)
 
+<a href="http://wpmanage.com/uji-popup">Uji Popup Premium</a> is now available with new features.
+
 http://www.youtube.com/watch?v=BkdNGiryUIw
 
 
