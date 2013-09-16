@@ -210,7 +210,7 @@ class Uji_Popups_Admin_API{
 	 * @since 1.0.0
 	 */
 	public function form_field_select ( $args ) {
-		if ( isset( $args['data']['options'] ) && ( count( (array)$args['data']['options'] ) > 0 ) ) {
+		if ( isset( $args['options'] ) && ( count( (array)$args['options'] ) > 0 ) ) {
 			$html = '';
 			$html .= '<select id="' . esc_attr( $args['key'] ) . '" name="' . esc_attr( $this->token ) . '[' . esc_attr( $args['key'] ) . ']">' . "\n";
 				foreach ( $this->fields[$args['key']]['options'] as $k => $v ) {
@@ -292,7 +292,7 @@ class Uji_Popups_Admin_API{
 				$val = get_option( $this->token);
 				foreach($this->fields as $name => $arr){
 				$data = (!empty($val[$name])) ? $val[$name] : $arr['default'];
-				add_settings_field( $name, $arr['name'], array( &$this, 'form_field_'.$arr['type'] ), $this->page_slug, $arr['section'], array( 'key' => $name, 'data' => $data, 'desc' => $arr['description'] ) );
+				add_settings_field( $name, $arr['name'], array( &$this, 'form_field_'.$arr['type'] ), $this->page_slug, $arr['section'], array( 'key' => $name, 'data' => $data, 'desc' => $arr['description'], 'options' => $arr['options'] ) );
 				}
 	
 	} // End create_fields()
