@@ -1,9 +1,9 @@
 /*
- * SimpleModal 1.4.4 - jQuery Plugin
+ * SimpleModal @VERSION - jQuery Plugin
  * http://simplemodal.com/
  * Copyright (c) 2013 Eric Martin
  * Licensed under MIT and GPL
- * Date: Sun, Jan 20 2013 15:58:56 -0800
+ * Date:
  */
 
 /**
@@ -58,7 +58,7 @@
  * @requires jQuery v1.3
  * @cat Plugins/Windows and Overlays
  * @author Eric Martin (http://ericmmartin.com)
- * @version 1.4.4
+ * @version @VERSION
  */
 
 ;(function (factory) {
@@ -84,6 +84,7 @@
 	};
 	browser.ie6 = browser.msie && /msie 6./.test(ua) && typeof window['XMLHttpRequest'] !== 'object';
 	browser.ie7 = browser.msie && /msie 7.0/.test(ua);
+	browser.boxModel = (document.compatMode === "CSS1Compat");
 
 	/*
 	 * Create and display a modal dialog.
@@ -237,8 +238,7 @@
 				return false;
 			}
 
-			// $.support.boxModel is undefined if checked earlier
-			browser.ieQuirks = browser.msie && !$.support.boxModel;
+			browser.ieQuirks = browser.msie && !browser.boxModel;
 
 			// merge defaults and user options
 			s.o = $.extend({}, $.modal.defaults, options);
@@ -477,7 +477,6 @@
 							te = '(' + ch + ' || ' + bch + ') / 2 - (this.offsetHeight / 2) + (t = ' + st + ' ? ' + st + ' : ' + bst + ') + "px"';
 							le = '(' + cw + ' || ' + bcw + ') / 2 - (this.offsetWidth / 2) + (t = ' + sl + ' ? ' + sl + ' : ' + bsl + ') + "px"';
 						}
-					
 						s.removeExpression('top');
 						s.removeExpression('left');
 						s.setExpression('top', te);
@@ -604,9 +603,7 @@
 				top = st + hc;
 				left = vc;
 			}
-//			s.d.container..css({left: left, top: top}); 
-//			ujimoto
-			s.d.container.delay(10).css({left: left, top: top}); 
+			s.d.container.css({left: left, top: top});
 		},
 		watchTab: function (e) {
 			var s = this;
