@@ -3,7 +3,7 @@ Contributors: ujimoto
 Tags: popup, custom popup, popup ads, popups, wordpress popup, optin popup, pop-up
 Requires at least: 3.0
 Tested up to: 3.9
-Stable tag: 1.1.0
+Stable tag: 1.1
 
 Uji Popup - Create your custom popup.
 
@@ -50,7 +50,7 @@ WPmanage [(http://www.wpmanage.com/uji-popup/)](http://www.wpmanage.com/uji-popu
 * SUPPORT *
 Contact us for support: info@wpmanage.com
 
-= 1.1.0 =
+= 1.1 =
 
 * NEW: Add popup by link or button
 * Compatibility with WP 4.0 beta 2
