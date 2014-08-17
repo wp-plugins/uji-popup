@@ -1,0 +1,71 @@
+#popup{
+	position: relative;
+	display: none;
+	background: #f9f9f9;
+	color: #444;
+	text-shadow: none;
+	padding: 15px;
+	-webkit-border-radius: 4px;
+	   -moz-border-radius: 4px;
+	        border-radius: 4px;
+	-webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	   -moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+#simplemodal-overlay{
+	background: #000;
+}
+/* Minimum width of 640 pixels. */
+@media only screen and (max-width: 640px) {
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+	
+	#popup {
+    	width: 90%!important;
+    	margin-left: 2%;
+	}
+	
+}
+/* Minimum width of 420 pixels. */
+@media only screen and (max-width: 420px) {
+	img {
+		max-width: 100%;
+		height: auto;
+	}	
+
+	#popup {
+    	width: 85%!important;
+    	margin-left: 2%;
+	}
+	
+}
+
+#popup a.modalCloseImg {
+	background:url(../images/x.png) no-repeat; /* adjust url as required */
+	display:inline;
+	position: absolute;
+	top: -18px;
+	right: -18px;
+	width: 36px;
+	height: 36px;
+	cursor: pointer;
+	z-index: 8040;
+	
+}
+
+<!--[if lt IE 7]>
+<style type='text/css'>
+	#popup a.modalCloseImg {
+		background:none;
+		right:-14px;
+		width:33px;
+		height:33px;
+		filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+			src='../images/x.png', sizingMethod='scale'
+		);
+	}
+</style>
+<![endif]-->
