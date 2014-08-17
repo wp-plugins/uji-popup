@@ -3,7 +3,7 @@
 Plugin Name: Uji Popup
 Plugin URI: http://wpmanage.com/popups-ads
 Description: Allown to convert visitors on your site/blog into taking an action whether its advertise, subscribing into your newsletter, offering a discount or cupon
-Version: 1.1
+Version: 1.1.0
 Author: WPmanage
 Author URI: http://wpmanage.com/
 */
@@ -20,6 +20,6 @@ Author URI: http://wpmanage.com/
 	
 	 global $ujipopup;
 	 $ujipopup = new Uji_Popups( __FILE__ );
-	 $ujipopup->version = '1.1';
+	 $ujipopup->version = '1.1.0';
 	 
 ?>
