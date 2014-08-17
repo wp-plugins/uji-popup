@@ -1,43 +1,70 @@
 jQuery( function($){
 
-	//Enable Tabs
-	$('#cont_tab a:first').tab('show');
-	    $('#cont_tab a').click(function (e) {
-			e.preventDefault();
-			$(this).tab('show');
-			})
-	
-	//Show Custom 		
-	var this_div = jQuery('#show_custom');		
-	var ck = jQuery('#_see_show_cust');
-	var all_ck = jQuery('#_see_show_cust, #_see_show_all, #_see_show_home');
-	all_ck.click(function(){
-		
-		if(ck.is(':checked')){
-			jQuery(this_div).fadeIn('fast');
-		}else{
-			jQuery(this_div).hide();
-		}
-	});	
-	
-	//data picker
-	$('.datapick').datepicker();
-	
-	//Data clear
-	$('.dclear').click(function(e){
-		e.preventDefault();	
-		$(this).parent('div').find('input').val('');	
-	
-	});
+    if($('#cont_tab').length){
+        //Enable Tabs
+        $('#cont_tab a:first').tab('show');
+            $('#cont_tab a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+                })
+
+        //Click sub 		
+       $(".radio_sub").each(function(){
+          var id = $(this).attr("id");
+       
+            if($(this).is(':checked')){
+                $("#"+id+"_sub").fadeIn('fast');
+            }else{
+                $("#"+id+"_sub").hide();
+            }
+       });
+       
+       $( ".radio" ).on( "click", function() {
+          var id = $(this).attr("id");
+       
+            if($(this).is(':checked')){
+                $('.options_sub').hide();
+                $("#"+id+"_sub").fadeIn('fast');
+            }
+       });
+       
+       //shortcode class
+       $( ".uji_class").html( $( "#pop_class" ).val());
+        $( "#pop_class" ).on( "input", function() {
+           var the_class = $(this).val();
+           $( ".uji_class").html(the_class);
+       });
+       
+
+        //data picker
+        $('.datapick').datepicker();
+
+        //Data clear
+        $('.dclear').click(function(e){
+            e.preventDefault();	
+            $(this).parent('div').find('input').val('');	
+
+        });
+        
+    }    
 	
 	
 	//Color picker
-	$('.colorpicker').colorpicker();
-	
-	$('.colorpicker').each(function(index) {
-		var initc = $(this).find("input").val();
-		$(this).find("i").css("background", initc);
-	});
+    if (typeof colorpicker == 'function') { 
+    
+        $('.colorpicker').colorpicker();
+
+        $('.colorpicker').each(function(index) {
+            var initc = $(this).find("input").val();
+            $(this).find("i").css("background", initc);
+        });
+        
+    }else{
+                
+        $('.wpcolorpicker').wpColorPicker();
+    }
+    
+    
 	
 	//Color picker
 	$('#show_timer').change(function() {

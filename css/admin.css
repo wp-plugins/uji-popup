@@ -9,6 +9,15 @@ li.menu-icon-popups .wp-menu-image a img { display: none; }
    Add Content Panel
    ========================================================================== */
 
+
+.tab-content {
+    overflow: hidden!important;
+}
+
+#postexcerpt_wp4 {
+    margin-top: 10px;
+}
+
 #wp-excerpt-editor-container {
     background: none repeat scroll 0 0 #FFFFFF;
 }

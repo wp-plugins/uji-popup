@@ -176,11 +176,20 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 		
 		wp_register_style( 'admin-popups', self::$plugin_url . 'css/admin.css', '', '1.0', 'screen' );
 		wp_register_style( 'bootstrap', self::$plugin_url . 'assets/bootsrap/css/bootstrap.css', '', '2.0', 'screen' );
-		wp_register_style( 'colorpicker', self::$plugin_url . 'assets/colorpicker/css/colorpicker.css', '', '1.0', 'screen' );
+      if ( floatval(get_bloginfo('version')) < 3.5){
+         wp_register_style( 'colorpicker', self::$plugin_url . 'assets/colorpicker/css/colorpicker.css', '', '1.0', 'screen' );
+      }   
 		wp_register_style( 'datapicker', self::$plugin_url . 'assets/datepicker/css/datepicker.css', '', '1.0', 'screen' );
 		wp_enqueue_style(  'admin-popups' );
 		wp_enqueue_style(  'bootstrap' );
-		wp_enqueue_style(  'colorpicker' );
+      if ( floatval(get_bloginfo('version')) >= 3.5){
+         wp_dequeue_style( 'colorpicker' );
+         wp_dequeue_style( 'color-picker' );
+         wp_dequeue_style( 'wp-color-picker' );
+         wp_enqueue_style( 'wp-color-picker' );
+      }else{
+         wp_enqueue_style( 'colorpicker' );
+      }
 		wp_enqueue_style(  'datapicker' );
 		
 		endif;
@@ -200,8 +209,12 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 		if (in_array( $screen->id, array( 'popups', 'popups_page_ujipopup-api' ))) :
 		
 		wp_enqueue_script( 'bootstrap', self::$plugin_url . 'assets/bootsrap/js/bootstrap.min.js', array( 'jquery' ), '2.0' );
-		wp_enqueue_script( 'bootstrap-color', self::$plugin_url . 'assets/colorpicker/js/bootstrap-colorpicker.js', array( 'jquery' ), '1.0' );
+      wp_enqueue_script( 'bootstrap-color', self::$plugin_url . 'assets/colorpicker/js/bootstrap-colorpicker.js', array( 'jquery' ), '1.0' );
 		wp_enqueue_script( 'bootstrap-date', self::$plugin_url . 'assets/datepicker/js/bootstrap-datepicker.js', array( 'jquery' ), '1.0' );
+      
+      if ( floatval(get_bloginfo('version')) >= 3.5){
+          wp_enqueue_script( 'wp-color-picker');
+      }
 		wp_enqueue_script( 'popups', self::$plugin_url . 'js/admin-popups.js', array( 'jquery' ), '1.0' );
 		
 		endif;
@@ -301,11 +314,12 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 	public function popups_meta_boxes() {
 	global $post;
 	
-
-		// Excerpt
+      // Excerpt
 		if ( function_exists('wp_editor') ) {
-			remove_meta_box( 'postexcerpt', 'product', 'normal' );
-			add_meta_box( 'postexcerpt', __('Popup Content', 'ujipopup'), array( &$this, 'popups_html' ), 'popups', 'normal' );
+         //WP 4 space
+         $idp = (   floatval(get_bloginfo('version')) >= 4 ) ? 'postexcerpt_wp4' : 'postexcerpt';
+			remove_meta_box( $idp, 'product', 'normal' );
+			add_meta_box( $idp, __('Popup Content', 'ujipopup'), array( &$this, 'popups_html' ), 'popups', 'normal' );
 		}
 		
 		add_meta_box( 'postwhere', __('Where to show', 'ujipopup'), array( &$this, 'popups_where' ), 'popups', 'normal' );
@@ -330,8 +344,9 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 		<div class="tab-pane" id="int-tab-1">
 				<div class="options_group tab-space">
 				<p class="form-field">
-					<label for="include_html"><?php _e("Included as Popup", 'ujipopup') ?></label>  
+					<label for="include_html"><?php _e("Includ this Popup", 'ujipopup') ?></label>  
 					<input id="include_html" class="checkbox" type="checkbox" value="yes" name="include_html" <?php checked( $this->get_opt( $post->ID, 'include_html' ), 'yes' ) ?>> 
+                                        <span class="description"><?php _e("Enabld/Disable this popup", 'ujipopup') ?>
 				</p>
 		</div>
 		<?php
@@ -380,19 +395,42 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 	  		 <div class="options_group">
 				<p class="form-field">
 					<label for="_see_show_cust"><?php _e("Enable on Custom Pages", 'ujipopup') ?></label>  
-					<input id="_see_show_cust" class="radio" type="radio" value="show_cust" name="where_show" <?php checked( $this->get_opt( $post->ID, 'where_show' ), 'show_cust' ) ?>> 
+					<input id="_see_show_cust" class="radio radio_sub" type="radio" value="show_cust" name="where_show" <?php checked( $this->get_opt( $post->ID, 'where_show' ), 'show_cust' ) ?>> 
 					<span class="description"><?php _e("Show Popup on selected Pages/Posts", 'ujipopup') ?></span>
 				</p>
 			   </div>	   
 			   
 		<!-- Select Posts/Pages -->
-	    	<div id="show_custom" class="options_group" <?php echo ( $this->get_opt( $post->ID, 'show_cust' ) != 'show_cust' ) ? ' style="display:none"' : '' ?>>
+	    	<div id="_see_show_cust_sub" class="options_group options_sub" <?php echo ( $this->get_opt( $post->ID, 'show_cust' ) != 'show_cust' ) ? ' style="display:none"' : '' ?>>
 				<p class="form-field">
 					<label for="pop_link"><?php _e("Select Posts/Pages", 'ujipopup') ?></label>  
 					<input type="text" name="pop_posts" class="short" id="pop_posts" value="<?php echo $this->get_opt( $post->ID, 'pop_posts' ); ?>" />  
 					<span class="description"><?php _e("Add any pages or posts id separated by commas. ex: 312, 16, 27", 'ujipopup') ?></span>
 				</p>
-			   </div>   
+			   </div>  
+      
+      <!-- checkbox Shortcode link -->
+	  		 <div class="options_group">
+				<p class="form-field">
+					<label for="_see_show_short"><?php _e("Link or Button", 'ujipopup') ?></label>  
+					<input id="_see_show_short" class="radio radio_sub" type="radio" value="show_short" name="where_show" <?php checked( $this->get_opt( $post->ID, 'where_show' ), 'show_short' ) ?>> 
+					<span class="description"><?php _e("Show on clicking button or link", 'ujipopup') ?></span>
+				</p>
+			   </div>	   
+			   
+		<!-- Select Shortcode link class -->
+	    	<div id="_see_show_short_sub" class="options_group options_sub" <?php echo ( $this->get_opt( $post->ID, 'show_short' ) != 'show_short' ) ? ' style="display:none"' : '' ?>>
+				<p class="form-field">
+					<label for="pop_link"><?php _e("Add class name", 'ujipopup') ?></label>  
+					<input type="text" name="pop_class" class="short" id="pop_class" value="<?php echo $this->get_opt( $post->ID, 'pop_class' ); ?>" />  
+					<span class="description"><?php _e("Class name for your link or button", 'ujipopup') ?></span>
+               <div style="background-color: #f6f6f6; color: #0074a2; padding: 14px 16px; display: inline-block; margin-left: 178px; border: 1px solid #969696;">
+                  <span style="font-weight: bold;">[uji_popup class="<span class="uji_class"></span>" id="<?php echo $post->ID; ?>"]</span> replace with: text, banner or image here <span style="font-weight: bold;">[/uji_popup]</span>
+               </div>
+               <span style="display: block; margin: 4px 0 0 178px;" class="description">Copy one of the two shortcode options and paste it where you want to have the click link</span>
+				</p>
+               
+			   </div> 
 			  
 			</div>
 	<?php 
@@ -405,9 +443,21 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 	public function popups_style( $post ) {
 		?>
 		<div class="tab-content side-content">
+                <div class="control-group chkbox2">
+			   <label class="size-label" for="add_close"><?php _e("Enable Autosize:", 'ujipopup') ?></label>  
+			   <input id="auto_size" class="checkbox" type="checkbox" value="yes" name="auto_size" <?php checked( $this->get_opt( $post->ID, 'auto_size' ), 'yes' ) ?>>
+                           <div class="howto"><?php _e("Leave the Height and Width empty", 'ujipopup') ?></div>
+                </div>     
 		  <div class="control-group input-append" id="wi1">
+            <p>
 		  		<label class="size-label" for="width1"><?php _e("Popup Width", 'ujipopup') ?>:</label>
-				<input class="small-text" id="width1" size="16" type="text" name="width1" value="<?php echo $this->get_opt( $post->ID, '_width1' ) ?>"> <span> px</span>
+				<input class="small-text" size="16" type="text" name="width1" value="<?php echo $this->get_opt( $post->ID, '_width1' ) ?>"> <span> px</span>
+            </p>
+            <p>
+		  		<label class="size-label" for="width1"><?php _e("Popup Height", 'ujipopup') ?>:</label>
+				<input class="small-text" size="16" type="text" name="height1" value="<?php echo $this->get_opt( $post->ID, '_height1' ) ?>"> <span> px</span>
+            <div class="howto"><?php _e("Height size is auto determined if it is empty", 'ujipopup') ?></div>
+            </p>
    		  </div>
           <h4 style="float:none; display:block; clear: both;">Content Spaces:</h4>
           <div class="control-group chkbox2">
@@ -428,7 +478,7 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
          <?php 
 			  $is = $this->get_sett( 'show_timer' ); 
 			  if( $is == "yes" ):
-		 ?>
+		   ?>
          <div class="control-group chkbox2">
 			   <label class="size-label" for="add_close"><?php _e("Show Countdown:", 'ujipopup') ?></label>  
 			   <input id="show_counter" class="checkbox" type="checkbox" value="yes" name="show_count" <?php checked( $this->get_opt( $post->ID, 'show_count' ), 'yes' ) ?>>
@@ -440,7 +490,7 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 		 </div>
          <?php endif; ?>
           
-		 <p class="howto"><?php _e("Height size is auto determined", 'ujipopup') ?></p>
+		 
 		 </div>
          
 	<?php
@@ -477,8 +527,10 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 				if(isset($_POST['pop_link'.$x])) update_post_meta($post_id, 'pop_link'.$x, esc_html(stripslashes($_POST['pop_link'.$x])));  else update_post_meta($post_id, 'pop_link'.$x, '');
 			}
 			if( isset($_POST['pop_posts'] ) ) update_post_meta($post_id, 'pop_posts', esc_html(stripslashes($_POST['pop_posts']))); else update_post_meta($post_id, 'pop_posts', '');
-			
+                        if( isset($_POST['pop_class'] ) ) update_post_meta($post_id, 'pop_class', esc_html(stripslashes($_POST['pop_class']))); else update_post_meta($post_id, 'pop_class', '');
+			if( isset($_POST['auto_size'] ) ) update_post_meta($post_id, 'auto_size', esc_html(stripslashes($_POST['auto_size']))); else update_post_meta($post_id, 'auto_size', '');
 			if( isset($_POST['width1'] ) ) update_post_meta($post_id, '_width1', esc_html(stripslashes($_POST['width1']))); else update_post_meta($post_id, '_width1', '');
+                        if( isset($_POST['height1'] ) ) update_post_meta($post_id, '_height1', esc_html(stripslashes($_POST['height1']))); else update_post_meta($post_id, '_height1', '');
 			if( isset($_POST['pop_top'] ) ) update_post_meta($post_id, 'pop_top', esc_html(stripslashes($_POST['pop_top']))); else update_post_meta($post_id, 'pop_top', '');
 			if( isset($_POST['pop_right'] ) ) update_post_meta($post_id, 'pop_right', esc_html(stripslashes($_POST['pop_right']))); else update_post_meta($post_id, 'pop_right', '');
 			if( isset($_POST['pop_bottom'] ) ) update_post_meta($post_id, 'pop_bottom', esc_html(stripslashes($_POST['pop_bottom']))); else update_post_meta($post_id, 'pop_bottom', '');

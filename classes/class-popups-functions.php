@@ -7,7 +7,7 @@ class Uji_Popups_Functions {
 	 * Check if trigger it
 	 * @since  1.0
 	 */
-	protected function is_popups ( $id ) {
+    protected function is_popups ( $id, $ajax = null ) {
 		$args = array(
 			 'post_type'     	 => 'popups',
 			 'post_status' 		 => 'publish',
@@ -35,13 +35,15 @@ class Uji_Popups_Functions {
 				}	
 		
 				//Where
-				$where = get_post_meta( get_the_ID(), 'where_show', true );
+                                $where = get_post_meta( get_the_ID(), 'where_show', true );
 
-				if( $valid && $where == 'show_home' ){
-					if( !is_home() && !is_front_page() ) {
-						$valid = false;
-					}
-				}
+                                if ( $valid && $where == 'show_home' ) {
+                                    if ( !is_front_page() && !isset($ajax['is_home']) ) {
+                                        $valid = false;
+                                    }elseif ( isset($ajax['is_home']) && !$ajax['is_home'] ) {
+                                        $valid = false;
+                                    }
+                                }
 				
 				//CUSTOM PAGE			
 				if( $valid && $where == 'show_cust' && !is_home() && !is_front_page() ){
@@ -55,7 +57,7 @@ class Uji_Popups_Functions {
 				}
 				
 				//NOT IN CUSTOM PAGE			
-				if( $valid && !is_home() && !is_front_page() ){
+				if ( $valid && !is_front_page() ) {
 					$pop_posts_not = get_post_meta( get_the_ID(), 'pop_posts_not', true );
 					if(!empty($pop_posts_not)){
 						$ids = explode( ",", $pop_posts_not );
@@ -64,7 +66,14 @@ class Uji_Popups_Functions {
 						}
 					}
 				}
-			
+            
+                                //SHORTCODE
+                                if ( $valid && $where == 'show_short' ) {
+                                    global $uji_short;
+                                    if ( shortcode_exists( 'uji_popup' ) && !$uji_short && !$this->is_cached()) {
+                                        $valid = false;
+                                    }
+                                }
 			
 				//CUSTOM PAGE NOT HOME
 				if( $valid && $where == 'show_cust' && ( is_home() || is_front_page() ) ){
@@ -121,17 +130,29 @@ class Uji_Popups_Functions {
 	 * @since  1.0
 	 */
 	public function inter_ajax_ads ( ) {
-		$id = $_POST['id_post'];
-		$ad_id = $this->is_popups( $id ); 
-		$mess =  $this->popup_ads( $id );
-		if( !empty( $mess ) && $ad_id ){
-			echo $mess;
-		} else if( empty( $mess ) || !$ad_id ){
-			echo 'none_popups';
-		}
-		
-		die();
+            $id = $_POST['id_post'];
+            $ajax = ( isset($_POST['is_front']) && $_POST['is_front'] == 1 ) ? array( 'is_home' => true ) : NULL;
+
+            $ad_id = $this->is_popups( $id, $ajax );
+            $mess = $this->popup_ads( $id, $ajax );
+            
+            if( !empty( $mess ) && $ad_id ){
+                    echo $mess;
+            } else if( empty( $mess ) || !$ad_id ){
+                    echo 'none_popups';
+            }
+
+            die();
 	}
+   
+        /**
+         * Add impression +
+         * @since  1.0
+         */
+         public function inter_ajax_impress ( ) {
+           $id = $_POST['id_ad'];
+           $this->impression ( $id );
+        }  
 	
 	
 	/**
@@ -150,10 +171,19 @@ class Uji_Popups_Functions {
 			  }
 		  break;
 		case 'style':
-			  $width  = get_post_meta( $id, '_width1', true );
-			  $width  = (!empty( $width )  && is_numeric( $width )) ? $width : '450';
-			  $style = 'width: '.$width.'px;';
-			  return $style;
+                          $auto  = get_post_meta( $id, 'auto_size', true );
+                          
+                          if($auto != "yes"){
+                            $width  = get_post_meta( $id, '_width1', true );
+                            $width  = ( !empty( $width )  && is_numeric( $width )) ? $width : '450';
+                            $style  = 'width: '.$width.'px;';
+                            $height  = get_post_meta( $id, '_height1', true );
+                            $height  = ( !empty( $width )  && is_numeric( $height )) ? $height : false;
+                             if( $height ) $style .= 'height: '.$height.'px;';
+                            return $style;
+                          }else{
+                             return 'overflow: inherit;';
+                          }
 		  break;
 		case 'style_cnt':
 			  $top 		= get_post_meta( $id, 'pop_top', true );
@@ -164,8 +194,13 @@ class Uji_Popups_Functions {
 			  $bottom	= ( !empty( $bottom ) && is_numeric( $bottom ) ) ? " ".$bottom."px" : " 0";
 			  $left 	= get_post_meta( $id, 'pop_left', true );
 			  $left		= ( !empty( $left ) && is_numeric( $left ) ) ? " ".$left."px" : " 0";
-		
-			  $style = 'padding: '.$top.$right.$bottom.$left;
+
+			  $style = 'padding: '.$top.$right.$bottom.$left.';';
+                          
+                          $auto  = get_post_meta( $id, 'auto_size', true );
+                          if($auto == "yes")
+                          $style .= 'overflow: hidden;';
+           
 			  return $style;
 		  break;  
 		case 'close':
@@ -177,9 +212,14 @@ class Uji_Popups_Functions {
 		  	 return ($timer == "yes") ? true  : false;
 		  break;  
 		case 'wait':
-			 $timer  = get_post_meta( $id, 'wait_time', true );
-		  	 return ($timer == "yes") ? true  : false;
-		  break;  
+			 //$wtimer  = get_post_meta( $id, 'show_count', true );
+                         $swait   = get_post_meta( $id, 'wait_time', true );
+		  	 return ( $swait == 'yes' ) ? true  : false;
+		  break;
+                case 'shortcode':
+			 $short  = get_post_meta( $id, 'where_show', true );
+		  	 return ($short == "show_short") ? true  : false;
+		  break;
 		default:
 		  	  return $this->get_content( $id );
 		} 

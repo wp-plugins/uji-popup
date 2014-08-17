@@ -178,9 +178,9 @@ class Uji_Popups_Admin_API{
 	 * @since 1.0.0
 	 */
 	public function form_field_color ( $args ) {
-	
-		echo '<div class="input-append color colorpicker" data-color="#000000" style="width:100px">
-				<input id="' . esc_attr( $args['key'] ) . '" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" type="text" class="span1" value="' . esc_attr( $args['data'] ) . '" style="width:60px">
+
+		echo '<div class="input-append color colorpicker" data-color="#000000">
+				<input id="' . esc_attr( $args['key'] ) . '" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" type="text" class="span1 wpcolorpicker" value="' . esc_attr( $args['data'] ) . '">
 				<span class="add-on"><i style="background-color: rgb(255, 146, 180)"></i></span>
 				</div>' . "\n";
 		if ( isset( $args['desc'] ) ) {
@@ -292,7 +292,7 @@ class Uji_Popups_Admin_API{
 				$val = get_option( $this->token);
 				foreach($this->fields as $name => $arr){
 				$data = (!empty($val[$name])) ? $val[$name] : $arr['default'];
-				add_settings_field( $name, $arr['name'], array( &$this, 'form_field_'.$arr['type'] ), $this->page_slug, $arr['section'], array( 'key' => $name, 'data' => $data, 'desc' => $arr['description'], 'options' => $arr['options'] ) );
+				add_settings_field( $name, $arr['name'], array( &$this, 'form_field_'.$arr['type'] ), $this->page_slug, $arr['section'], array( 'key' => $name, 'data' => $data, 'desc' => $arr['description'], 'options' => (isset($arr['options'])) ? $arr['options'] : '' ) );
 				}
 	
 	} // End create_fields()

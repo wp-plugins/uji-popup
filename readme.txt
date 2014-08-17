@@ -2,8 +2,8 @@
 Contributors: ujimoto
 Tags: popup, custom popup, popup ads, popups, wordpress popup, optin popup, pop-up
 Requires at least: 3.0
-Tested up to: 3.7.1
-Stable tag: 1.0.3
+Tested up to: 3.9
+Stable tag: 1.1
 
 Uji Popup - Create your custom popup.
 
@@ -19,9 +19,9 @@ Features:
 * Timer(countdown) can be enabled/disabled
 * Close/Skip button can be enabled/disabled
 * Impression: count number of displays
-* Wait timer.Enter how long the popups shoult wait until will be shown.
+* Wait timer.Enter how long the popups should wait until will be shown.
 * Page control allows you to set on all pages/homepage or just on custom pages
-* Multilanguage Backend/Frontend support
+* Multi language Backend/Frontend support
 * Support customize colors
 * Support for cache plugins (WP Super Cache and W3 or W3 Total Cache)
 
@@ -49,6 +49,14 @@ WPmanage [(http://www.wpmanage.com/uji-popup/)](http://www.wpmanage.com/uji-popu
 
 * SUPPORT *
 Contact us for support: info@wpmanage.com
+
+= 1.1 =
+
+* NEW: Add popup by link or button
+* Compatibility with WP 4.0 beta 2
+* New Countdown Module
+* Fix Colorpicker
+* Fix add URL issue
 
 = 1.0.3 =
 

@@ -1,3 +1,7 @@
+.modal a.close-modal{
+    z-index: 999999;
+}
+
 #popups{
 	background: #fff;
 	width: 100%;
@@ -5,25 +9,23 @@
 	padding: 0;
 	position: relative;
 }
+
+#popup{
+    padding: 0!important;
+	display: none;
+}
+
 #popups-bar{
+   position: absolute;
 	width: 100%;
 	background: #000;
-	padding: 5px 15px;
-	margin-left: -15px;
-	margin-top: -15px;
+	padding: 5px 0;
 	overflow: hidden;
 	color: #fff;
-	z-index: 999999999;
+	z-index: 10;
 	-webkit-box-shadow: 0px 1px 5px rgba(50, 50, 50, 0.75);
 	-moz-box-shadow:    0px 1px 5px rgba(50, 50, 50, 0.75);
 	box-shadow:         0px 1px 5px rgba(50, 50, 50, 0.75);
-	
-	-webkit-border-top-left-radius: 4px;
-	-webkit-border-top-right-radius: 4px;
-	-moz-border-radius-topleft: 4px;
-	-moz-border-radius-topright: 4px;
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
 }
 #popups-bar div{
 	line-height: 16px;
@@ -59,9 +61,10 @@
 #popups-cnt{
 	margin: 0 auto;
 	height: 100%;
+   overflow: auto;
 }
 #popups-cnt a{
-	display: block;
+	
 }
 .popups-kkcount-down{
 	margin: 0 2px;
@@ -69,6 +72,11 @@
 .popups-kkcount-down .kkc-godz-text,
 .popups-kkcount-down .kkc-godz{
 	display: none;
+}
+
+/* FIX SCROLL */
+.simplemodal-wrap{
+    overflow: inherit!important;
 }
 /*-------------------------------------------------------------------------------------------*/
 /* AD CONTENT STYLES */
