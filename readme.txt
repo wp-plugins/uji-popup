@@ -50,7 +50,9 @@ WPmanage [(http://www.wpmanage.com/uji-popup/)](http://www.wpmanage.com/uji-popu
 * SUPPORT *
 Contact us for support: info@wpmanage.com
 
-= 1.1 =
+== Changelog ==
+
+= 1.1.0 =
 
 * NEW: Add popup by link or button
 * Compatibility with WP 4.0 beta 2
