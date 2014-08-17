@@ -279,8 +279,6 @@ class Uji_Popups extends Uji_Popups_Functions {
 					
 						<div id="popup" ' . $style_main . '>';
 
-            if ( $close )
-                $html_ad .= '<a class="modalCloseImg simplemodal-close" title="Close"></a>';
 
             if ( $timer && !empty( $show_timer ) && $show_timer == 'yes' )
                 $html_ad .= '<div id="popups-bar" ' . $style_bar . '>
