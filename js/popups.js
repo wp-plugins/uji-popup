@@ -103,6 +103,9 @@ function open_lightbox(){
             escapeClose: false,
             clickClose: false
         });
+        //Location
+        if(ujiPopups.location)
+            jQuery("#popup").addClass(ujiPopups.location);
 }
 
 //Close Ad
