@@ -6,7 +6,17 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 	private $file;
 	public static $plugin_url;
 	public static $plugin_path;
-	
+        public static function location_types() { 
+           return array("left-top" => "Top Left",
+                        "center-top" => "Top Center",
+                        "right-top" => "Top Right",
+                        "left-center" => "Middle Left",
+                        "center" => "Middle Center",
+                        "right-center" => "Middle Right",
+                        "left-bottom" => "Bottom Left",
+                        "center-bottom" => "Bottom Center",
+                        "right-bottom" => "Bottom Right");				
+        }
 	
 	/**
 	 * __construct function.
@@ -68,8 +78,27 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 		$this->labels['popups'] = array( 'singular' => __( 'Popup', 'ujipopup' ), 'plural' => __( 'Popups', 'ujipopup' ), 'menu' => __( 'Uji Popup', 'ujipopup' ) );
 	} // End setup_post_type_labels_base()
 	
-	
-	
+	/**
+	 * Location
+	 * @since  1.1.1
+	 * @return void
+	 */
+	private function ujip_select( $name, $loc_arr, $sel, $chk ){
+            if(!empty( $loc_arr ) ){
+                
+                $sel = ( isset($sel) && !empty($sel) && array_key_exists($sel, $loc_arr) ) ? $sel : $chk;
+                
+                $select   = '<select name="'.$name.'" id="popup_' . $name . '">';
+                foreach ( $loc_arr as $v => $n ) {
+                        $selected = (isset( $sel ) && !empty( $sel ) && $sel == $v ) ? ' selected="selected"' : '';
+                        $select  .= '<option value="' . $v . '" ' . $selected . '> ' . $n . ' </option>';
+                }
+                $select  .= '</select>';
+            }
+            
+            return $select;
+        }
+        
 	/**
 	 * Setup the "Uji Popups" post type
 	 * @since  1.0.0
@@ -94,7 +123,6 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 
 		register_post_type( 'popups', $args );
 	} // End setup_zodiac_post_type()
-	
 	
 	/**
 	 * Add column headings to the "slides" post list screen.
@@ -161,7 +189,6 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 
 		return $labels;
 	} // End create_post_type_labels()
-	
 	
 	/**
 	 * Load the global admin styles for the menu icon and the relevant page icon.
@@ -442,56 +469,66 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 	 */
 	public function popups_style( $post ) {
 		?>
-		<div class="tab-content side-content">
-                <div class="control-group chkbox2">
-			   <label class="size-label" for="add_close"><?php _e("Enable Autosize:", 'ujipopup') ?></label>  
-			   <input id="auto_size" class="checkbox" type="checkbox" value="yes" name="auto_size" <?php checked( $this->get_opt( $post->ID, 'auto_size' ), 'yes' ) ?>>
-                           <div class="howto"><?php _e("Leave the Height and Width empty", 'ujipopup') ?></div>
-                </div>     
-		  <div class="control-group input-append" id="wi1">
-            <p>
-		  		<label class="size-label" for="width1"><?php _e("Popup Width", 'ujipopup') ?>:</label>
-				<input class="small-text" size="16" type="text" name="width1" value="<?php echo $this->get_opt( $post->ID, '_width1' ) ?>"> <span> px</span>
-            </p>
-            <p>
-		  		<label class="size-label" for="width1"><?php _e("Popup Height", 'ujipopup') ?>:</label>
-				<input class="small-text" size="16" type="text" name="height1" value="<?php echo $this->get_opt( $post->ID, '_height1' ) ?>"> <span> px</span>
-            <div class="howto"><?php _e("Height size is auto determined if it is empty", 'ujipopup') ?></div>
-            </p>
-   		  </div>
-          <h4 style="float:none; display:block; clear: both;">Content Spaces:</h4>
-          <div class="control-group chkbox2">
-			   <p><label class="size-label" for="pop_close"><?php _e("Top", 'ujipopup') ?></label>
-               <input class="small-text" id="pop_top" size="16" type="text" name="pop_top" value="<?php echo $this->get_opt( $post->ID, 'pop_top' ) ?>"> px</p>
-               <p><label class="size-label" for="pop_close"><?php _e("Right", 'ujipopup') ?></label>
-               <input class="small-text" id="pop_right" size="16" type="text" name="pop_right" value="<?php echo $this->get_opt( $post->ID, 'pop_right' ) ?>"> px</p>
-               <p><label class="size-label" for="add_close"><?php _e("Bottom", 'ujipopup') ?></label>
-               <input class="small-text" id="pop_bottom" size="16" type="text" name="pop_bottom" value="<?php echo $this->get_opt( $post->ID, 'pop_bottom' ) ?>"> px</p>
-               <p><label class="size-label" for="pop_close"><?php _e("Left", 'ujipopup') ?></label>
-               <input class="small-text" id="pop_left" size="16" type="text" name="pop_left" value="<?php echo $this->get_opt( $post->ID, 'pop_left' ) ?>"> px</p>
-		  </div>
-		  <div class="control-group chkbox2">
-			   <label class="size-label" for="add_close"><?php _e("Show Close Button:", 'ujipopup') ?></label>  
-			   <input id="add_close" class="checkbox" type="checkbox" value="yes" name="add_close" <?php checked( $this->get_opt( $post->ID, 'add_close' ), 'yes' ) ?>>
-		  </div>
+                <div class="tab-content side-content">
+                    <div class="control-group chkbox2">
+                        <label class="size-label" for="add_close"><?php _e("Enable Autosize:", 'ujipopup') ?></label>  
+                        <input id="auto_size" class="checkbox" type="checkbox" value="yes" name="auto_size" <?php checked($this->get_opt($post->ID, 'auto_size'), 'yes') ?>>
+                        <div class="howto"><?php _e("Leave the Height and Width empty", 'ujipopup') ?></div>
+                    </div>     
+                    <div class="control-group input-append" id="wi1">
+                        <p>
+                            <label class="size-label" for="width1"><?php _e("Popup Width", 'ujipopup') ?>:</label>
+                            <input class="small-text" size="16" type="text" name="width1" value="<?php echo $this->get_opt($post->ID, '_width1') ?>"> <span> px</span>
+                        </p>
+                        <p>
+                            <label class="size-label" for="width1"><?php _e("Popup Height", 'ujipopup') ?>:</label>
+                            <input class="small-text" size="16" type="text" name="height1" value="<?php echo $this->get_opt($post->ID, '_height1') ?>"> <span> px</span>
+                        <div class="howto"><?php _e("Height size is auto determined if it is empty", 'ujipopup') ?></div>
+                        </p>
+                    </div>
 
-         <?php 
-			  $is = $this->get_sett( 'show_timer' ); 
-			  if( $is == "yes" ):
-		   ?>
-         <div class="control-group chkbox2">
-			   <label class="size-label" for="add_close"><?php _e("Show Countdown:", 'ujipopup') ?></label>  
-			   <input id="show_counter" class="checkbox" type="checkbox" value="yes" name="show_count" <?php checked( $this->get_opt( $post->ID, 'show_count' ), 'yes' ) ?>>
-		 </div>
-         
-         <div class="control-group chkbox2">
-			   <label class="size-label" for="add_close"><?php _e("Enable Wait Time:", 'ujipopup') ?></label>  
-			   <input id="wait_time" class="checkbox" type="checkbox" value="yes" name="wait_time" <?php checked( $this->get_opt( $post->ID, 'wait_time' ), 'yes' ) ?>>
-		 </div>
-         <?php endif; ?>
-          
-		 
-		 </div>
+                    <div class="control-group select2">         
+                        <h4 style="float:none; display:block; clear: both;">Position:</h4>
+                        <p>
+                            <label for="popup_pop_location"><?php _e("Location", 'ujipopup') ?>:</label>
+                            <?php echo $this->ujip_select('pop_location', self::location_types(), $this->get_opt($post->ID, 'pop_location'), 'center'); ?>
+                        </p>
+                        <div class="howto"><?php _e("Choose where the popup will be positioned.", 'ujipopup') ?></div>
+                    </div>
+
+                    <h4 style="float:none; display:block; clear: both;">Content Spaces:</h4>
+                    <div class="control-group chkbox2">
+                        <p><label class="size-label" for="pop_close"><?php _e("Top", 'ujipopup') ?></label>
+                            <input class="small-text" id="pop_top" size="16" type="text" name="pop_top" value="<?php echo $this->get_opt($post->ID, 'pop_top') ?>"> px</p>
+                        <p><label class="size-label" for="pop_close"><?php _e("Right", 'ujipopup') ?></label>
+                            <input class="small-text" id="pop_right" size="16" type="text" name="pop_right" value="<?php echo $this->get_opt($post->ID, 'pop_right') ?>"> px</p>
+                        <p><label class="size-label" for="add_close"><?php _e("Bottom", 'ujipopup') ?></label>
+                            <input class="small-text" id="pop_bottom" size="16" type="text" name="pop_bottom" value="<?php echo $this->get_opt($post->ID, 'pop_bottom') ?>"> px</p>
+                        <p><label class="size-label" for="pop_close"><?php _e("Left", 'ujipopup') ?></label>
+                            <input class="small-text" id="pop_left" size="16" type="text" name="pop_left" value="<?php echo $this->get_opt($post->ID, 'pop_left') ?>"> px</p>
+                    </div>
+                    <div class="control-group chkbox2">
+                        <label class="size-label" for="add_close"><?php _e("Show Close Button:", 'ujipopup') ?></label>  
+                        <input id="add_close" class="checkbox" type="checkbox" value="yes" name="add_close" <?php checked($this->get_opt($post->ID, 'add_close'), 'yes') ?>>
+                    </div>
+
+                    <?php
+                    $is = $this->get_sett('show_timer');
+                    if ( $is == "yes" ):
+                        ?>
+                        <div class="control-group chkbox2">
+                            <label class="size-label" for="add_close"><?php _e("Show Countdown:", 'ujipopup') ?></label>  
+                            <input id="show_counter" class="checkbox" type="checkbox" value="yes" name="show_count" <?php checked($this->get_opt($post->ID, 'show_count'), 'yes') ?>>
+                        </div>
+
+                        <div class="control-group chkbox2">
+                            <label class="size-label" for="add_close"><?php _e("Enable Wait Time:", 'ujipopup') ?></label>  
+                            <input id="wait_time" class="checkbox" type="checkbox" value="yes" name="wait_time" <?php checked($this->get_opt($post->ID, 'wait_time'), 'yes') ?>>
+                        </div>
+                    <?php endif; ?>
+
+
+                </div>
          
 	<?php
 		 echo  '<input type="hidden" name="popups_edit_nonce" value="'. wp_create_nonce( 'popups_edit_nonce' ) .'" />';	
@@ -528,7 +565,9 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 			}
 			if( isset($_POST['pop_posts'] ) ) update_post_meta($post_id, 'pop_posts', esc_html(stripslashes($_POST['pop_posts']))); else update_post_meta($post_id, 'pop_posts', '');
                         if( isset($_POST['pop_class'] ) ) update_post_meta($post_id, 'pop_class', esc_html(stripslashes($_POST['pop_class']))); else update_post_meta($post_id, 'pop_class', '');
-			if( isset($_POST['auto_size'] ) ) update_post_meta($post_id, 'auto_size', esc_html(stripslashes($_POST['auto_size']))); else update_post_meta($post_id, 'auto_size', '');
+			
+                        if( isset($_POST['pop_location'] ) ) update_post_meta($post_id, 'pop_location', esc_html(stripslashes($_POST['pop_location']))); else update_post_meta($post_id, 'pop_location', '');
+                        if( isset($_POST['auto_size'] ) ) update_post_meta($post_id, 'auto_size', esc_html(stripslashes($_POST['auto_size']))); else update_post_meta($post_id, 'auto_size', '');
 			if( isset($_POST['width1'] ) ) update_post_meta($post_id, '_width1', esc_html(stripslashes($_POST['width1']))); else update_post_meta($post_id, '_width1', '');
                         if( isset($_POST['height1'] ) ) update_post_meta($post_id, '_height1', esc_html(stripslashes($_POST['height1']))); else update_post_meta($post_id, '_height1', '');
 			if( isset($_POST['pop_top'] ) ) update_post_meta($post_id, 'pop_top', esc_html(stripslashes($_POST['pop_top']))); else update_post_meta($post_id, 'pop_top', '');

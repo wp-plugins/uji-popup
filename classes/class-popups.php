@@ -177,10 +177,17 @@ class Uji_Popups extends Uji_Popups_Functions {
                     $JSujiPopups = array_merge( $JSujiPopups, array( 'minutes' => $tra_minutes ) );
                 }
             }
+           
             //Close button
             $close = $this->get_interad( $ad_id, 'close' );
             if ( $close ) {
                 $JSujiPopups = array_merge( $JSujiPopups, array( 'showclose' => 'true' ) );
+            }
+            
+            //Class
+            $class = $this->get_interad( $ad_id, 'class' );
+            if ( $class != 'center' ) {
+                $JSujiPopups = array_merge( $JSujiPopups, array( 'location' => $class ) );
             }
 
             wp_enqueue_style( $this->token . '-modalcss' );
@@ -258,12 +265,19 @@ class Uji_Popups extends Uji_Popups_Functions {
                     //add impression
                     $this->impression( $ad_id );
                 }
-
+                
                 //Close button
                 $close = $this->get_interad( $ad_id, 'close' );
                 if ( $close ) {
                     $JSujiPopups = array_merge( $JSujiPopups, array( 'showclose' => 'true' ) );
                 }
+                
+                //Class
+                $class = $this->get_interad( $ad_id, 'class' );
+                if ( $class != 'center' ) {
+                    $JSujiPopups = array_merge( $JSujiPopups, array( 'location' => $class ) );
+                }
+                
                 //add JS vars
                 if ( !empty( $JSujiPopups ) ) {
                     wp_localize_script( $this->token . '-popups', 'ujiPopups', $JSujiPopups );

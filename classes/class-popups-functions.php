@@ -182,7 +182,7 @@ class Uji_Popups_Functions {
                              if( $height ) $style .= 'height: '.$height.'px;';
                             return $style;
                           }else{
-                             return 'overflow: inherit;';
+                             return 'overflow: visible;';
                           }
 		  break;
 		case 'style_cnt':
@@ -207,6 +207,10 @@ class Uji_Popups_Functions {
 			 $close  = get_post_meta( $id, 'add_close', true );
 		  	 return ($close == "yes") ? true  : false;
 		  break;
+                case 'class':
+                        $class = get_post_meta( $id, 'pop_location', true );
+                        return (!empty($class)) ? $class : false;
+                  break;
 		case 'timer':
 			 $timer  = get_post_meta( $id, 'show_count', true );
 		  	 return ($timer == "yes") ? true  : false;
