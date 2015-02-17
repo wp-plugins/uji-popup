@@ -1,9 +1,9 @@
 === Uji Popup ===
 Contributors: ujimoto
-Tags: popup, custom popup, popup ads, popups, wordpress popup, optin popup, pop-up
+Tags: onclick popup, optin popup, pop-up, pop-ups, popup, popup ads, popup advertising, popup box, popup form, popup message, popup window, popups, modal, modals, unblockable, wordpress popup, auto open, automatic popup, conversion, conversions, custom popup, dialog box, exit intent, fancy box, fancy popup, form modal, post popup, page popup, screen popup, marketing
 Requires at least: 3.0
-Tested up to: 3.9
-Stable tag: 1.1.0
+Tested up to: 4.1
+Stable tag: 1.1.1
 
 Uji Popup - Create your custom popup.
 
@@ -12,14 +12,14 @@ Uji Popup - Create your custom popup.
 Uji Popup is a WordPress popup plugin which allown you to convert visitors on your site/blog into taking an action whether its advertise, subscribing into your newsletter, offering a discount or cupon. The popup messages are displayed as soon as the visitors opens the page.
 
 
-Features:
+= Features: =
 
 * Popups are shown when the page is loaded
 * Use image ads or text ads (Flash, HTML, Images, Videos, Audio, Embed Code etc.)
 * Timer(countdown) can be enabled/disabled
 * Close/Skip button can be enabled/disabled
 * Impression: count number of displays
-* Wait timer.Enter how long the popups should wait until will be shown.
+* Wait timer. Enter how long the popup should wait until will be shown.
 * Page control allows you to set on all pages/homepage or just on custom pages
 * Multi language Backend/Frontend support
 * Support customize colors
@@ -51,6 +51,11 @@ WPmanage [(http://www.wpmanage.com/uji-popup/)](http://www.wpmanage.com/uji-popu
 Contact us for support: info@wpmanage.com
 
 == Changelog ==
+
+= 1.1.1 =
+
+* New: Location: Choose where the popup will be positioned
+* Bug Fix: Close button overflow on some themes
 
 = 1.1.0 =
 
