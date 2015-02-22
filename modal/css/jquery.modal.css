@@ -1,4 +1,4 @@
-.modal {
+.ujimodal {
   display: none;
   width: 400px;
   background: #fff;
@@ -10,7 +10,7 @@
   box-shadow: 0 0 10px #000;
 }
 
-.modal a.close-modal {
+.ujimodal a.close-modal {
   position: absolute;
   top: -12.5px;
   right: -12.5px;
@@ -21,7 +21,7 @@
   background: url(close.png) no-repeat 0 0;
 }
 
-.modal-spinner {
+.ujimodal-spinner {
   display: none;
   width: 64px;
   height: 64px;

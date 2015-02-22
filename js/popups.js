@@ -75,7 +75,7 @@ function popups_count(){
  
       count = jQuery('.popups-kkcount-down').data('seconds');
       
-      jQuery('.popups-kkcount-down').countdown({
+      jQuery('.popups-kkcount-down').countdownpopup({
           date: +(new Date) + 1000*count,
           render: function(data) {
             if( data.min > 0)
