@@ -1,4 +1,4 @@
-.modal a.close-modal{
+.ujimodal a.close-modal{
     z-index: 999999;
 }
 
@@ -62,16 +62,15 @@
 	margin: 0 auto;
 	height: 100%;
    overflow: auto;
+    box-sizing: border-box;
 }
 #popups-cnt a{
 	
 }
-
 #popups-cnt > p{
     padding: 0;
     margin: 0;
 }
-
 .popups-kkcount-down{
 	margin: 0 2px;
 }

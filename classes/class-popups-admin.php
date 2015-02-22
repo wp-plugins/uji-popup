@@ -48,7 +48,7 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 		add_filter( 'enter_title_here', array( &$this, 'change_default_title' ) );
 
 		//add admin .css
-		add_action( 'admin_enqueue_scripts', array( &$this, 'admin_styles_popups' ) );
+		add_action( 'admin_enqueue_scripts', array( &$this, 'admin_styles_popups' ), 9999 );
 		//add admin .js
 		add_action( 'admin_print_scripts', array( &$this, 'admin_enqueue_scripts' ) );
 		
@@ -197,31 +197,33 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 	 * @return void
 	 */
 	public function admin_styles_popups () {
-		$screen = get_current_screen();
+        $screen = get_current_screen();
 
-		if (in_array( $screen->id, array( 'popups', 'popups_page_ujipopup-api' )) || in_array( $screen->id, array( 'edit-popups', 'popups_page_ujipopup-api' ))) :
-		
-		wp_register_style( 'admin-popups', self::$plugin_url . 'css/admin.css', '', '1.0', 'screen' );
-		wp_register_style( 'bootstrap', self::$plugin_url . 'assets/bootsrap/css/bootstrap.css', '', '2.0', 'screen' );
-      if ( floatval(get_bloginfo('version')) < 3.5){
-         wp_register_style( 'colorpicker', self::$plugin_url . 'assets/colorpicker/css/colorpicker.css', '', '1.0', 'screen' );
-      }   
-		wp_register_style( 'datapicker', self::$plugin_url . 'assets/datepicker/css/datepicker.css', '', '1.0', 'screen' );
-		wp_enqueue_style(  'admin-popups' );
-		wp_enqueue_style(  'bootstrap' );
-      if ( floatval(get_bloginfo('version')) >= 3.5){
-         wp_dequeue_style( 'colorpicker' );
-         wp_dequeue_style( 'color-picker' );
-         wp_dequeue_style( 'wp-color-picker' );
-         wp_enqueue_style( 'wp-color-picker' );
-      }else{
-         wp_enqueue_style( 'colorpicker' );
-      }
-		wp_enqueue_style(  'datapicker' );
-		
-		endif;
+        if ( in_array( $screen->id, array( 'popups', 'popups_page_ujipopup-api' ) ) || in_array( $screen->id, array( 'edit-popups', 'popups_page_ujipopup-api' ) ) ) :
+            wp_dequeue_style( array('adminstyle', 'adminstyle-css') );
+        
+            wp_register_style( 'admin-popups', self::$plugin_url . 'css/admin.css', '', '1.0', 'screen' );
+            wp_register_style( 'bootstrap', self::$plugin_url . 'assets/bootsrap/css/bootstrap.css', '', '2.0', 'screen' );
+            if ( floatval( get_bloginfo( 'version' ) ) < 3.5 ) {
+                wp_register_style( 'colorpicker', self::$plugin_url . 'assets/colorpicker/css/colorpicker.css', '', '1.0', 'screen' );
+            }
+            wp_register_style( 'datapicker', self::$plugin_url . 'assets/datepicker/css/datepicker.css', '', '1.0', 'screen' );
+            wp_enqueue_style( 'admin-popups' );
+            wp_enqueue_style( 'bootstrap' );
+            if ( floatval( get_bloginfo( 'version' ) ) >= 3.5 ) {
+                wp_dequeue_style( 'colorpicker' );
+                wp_dequeue_style( 'color-picker' );
+                wp_dequeue_style( 'wp-color-picker' );
+                wp_enqueue_style( 'wp-color-picker' );
+            } else {
+                wp_enqueue_style( 'colorpicker' );
+            }
+            wp_enqueue_style( 'datapicker' );
 
-	} // End admin_styles_global()
+        endif;
+    }
+
+// End admin_styles_global()
 	
 		/**
 	 * enqueue_scripts function.

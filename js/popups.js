@@ -95,7 +95,7 @@ function popups_count(){
 //Open lightbox
 function open_lightbox(){
         var isClose = ( ujiPopups.showclose ) ? true : false;
-	jQuery("#popup").modal({
+	jQuery("#popup").modaluji({
             fadeDuration: 500,
             fadeDelay: 0.50,
             zIndex: 99999,
@@ -110,7 +110,7 @@ function open_lightbox(){
 
 //Close Ad
 function popups_close( ){
-   jQuery.modal.close();
+   jQuery.modaluji.close();
    var typ     = (typeof(ujiPopups) !== 'undefined' && ujiPopups != null && ujiPopups.is_short)? false : true;
    if( typ == true ){
         jQuery("#popup").remove();

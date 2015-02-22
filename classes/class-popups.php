@@ -94,7 +94,7 @@ class Uji_Popups extends Uji_Popups_Functions {
      * @return void
      */
     public function enqueue_scripts() {
-        wp_register_script( $this->token . '-modal', esc_url( $this->plugin_url . 'modal/jquery.modal.js' ), array( 'jquery' ), '0.5.5', true );
+        wp_register_script( $this->token . '-modal', esc_url( $this->plugin_url . 'modal/jquery.modal.min.js' ), array( 'jquery' ), '0.5.5', true );
         wp_register_script( $this->token . '-count', esc_url( $this->plugin_url . 'js/jquery.countdown.js' ), array( 'jquery' ), '1.4.0', true );
         wp_register_script( $this->token . '-popups', esc_url( $this->plugin_url . 'js/popups.js' ), array( 'jquery' ), '1.0', true );
     }
