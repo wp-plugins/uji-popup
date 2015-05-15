@@ -1,0 +1,68 @@
+#popups-cnt{
+    position: relative;
+}
+
+#popups-bar{
+    padding: 13.5px 0!important;
+}
+
+.popups-close{
+    margin-right: 45px!important;
+}
+
+#inter-mess{
+   padding: 0 35px 0 0!important;
+}
+
+.ujimodal {
+  display: none;
+  background: #fff;
+  padding: 15px 30px;
+  -webkit-box-shadow: 0 0 10px #000;
+  -moz-box-shadow: 0 0 10px #000;
+  -o-box-shadow: 0 0 10px #000;
+  -ms-box-shadow: 0 0 10px #000;
+  box-shadow: 0 0 10px #000;
+}
+
+.ujimodal a.close-modal {
+    color: #333;
+    font-family: Arial,Baskerville,monospace;
+    font-size: 28px;
+    font-style: normal;
+    height: 44px;
+    line-height: 44px;
+    opacity: 0.65;
+    padding: 0 0 18px 10px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    text-decoration: none;
+    top: 0;
+    width: 44px;
+    border: 0 none;
+    box-shadow: none;
+    cursor: pointer;
+    display: block;
+    outline: 0 none;
+    overflow: visible;
+    padding: 0;
+    z-index: 1046;
+}
+
+.modal-spinner {
+  display: none;
+  width: 64px;
+  height: 64px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-right: -32px;
+  margin-top: -32px;
+  background: url(spinner.gif) #111 no-repeat center center;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -o-border-radius: 8px;
+  -ms-border-radius: 8px;
+  border-radius: 8px;
+}

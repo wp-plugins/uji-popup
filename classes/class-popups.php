@@ -83,6 +83,7 @@ class Uji_Popups extends Uji_Popups_Functions {
      */
     public function enqueue_styles() {
         wp_register_style( $this->token . '-modalcss', esc_url( $this->plugin_url . 'modal/css/jquery.modal.css' ), '', '0.5.5', 'all' );
+        wp_register_style( $this->token . '-modalcssmod', esc_url( $this->plugin_url . 'modal/css/modal.modern.css' ), '', '0.1', 'all' );
         wp_register_style( $this->token . '-popups', esc_url( $this->plugin_url . 'css/popups.css' ), '', '1.0', 'all' );
     }
 
@@ -120,6 +121,7 @@ class Uji_Popups extends Uji_Popups_Functions {
             'title_color' => 'title_color',
             'back_color' => 'back_color',
             'close_name' => 'but_close',
+            'close_style' => 'close_style',
             'show_timer' => 'show_timer',
             'countdown_time' => 'countdown_time',
             'wait_time' => 'wait_time',
@@ -150,7 +152,7 @@ class Uji_Popups extends Uji_Popups_Functions {
                 $JSujiPopups = array_merge( $JSujiPopups, array( 'is_short' => $uji_short ) );
             } else {
                 //because is ajax trigger just once
-                if( $id )
+                if ( $id )
                     $this->impression( $ad_id );
             }
 
@@ -177,20 +179,21 @@ class Uji_Popups extends Uji_Popups_Functions {
                     $JSujiPopups = array_merge( $JSujiPopups, array( 'minutes' => $tra_minutes ) );
                 }
             }
-           
+
             //Close button
             $close = $this->get_interad( $ad_id, 'close' );
             if ( $close ) {
                 $JSujiPopups = array_merge( $JSujiPopups, array( 'showclose' => 'true' ) );
             }
-            
+
             //Class
             $class = $this->get_interad( $ad_id, 'class' );
             if ( $class != 'center' ) {
                 $JSujiPopups = array_merge( $JSujiPopups, array( 'location' => $class ) );
             }
 
-            wp_enqueue_style( $this->token . '-modalcss' );
+            $stylecls = ( $close_style == 'modern' ) ? 'mod' : '';
+            wp_enqueue_style( $this->token . '-modalcss' . $stylecls );
             wp_enqueue_style( $this->token . '-popups' );
             wp_enqueue_script( $this->token . '-modal' );
             wp_enqueue_script( $this->token . '-popups' );
@@ -265,25 +268,26 @@ class Uji_Popups extends Uji_Popups_Functions {
                     //add impression
                     $this->impression( $ad_id );
                 }
-                
+
                 //Close button
                 $close = $this->get_interad( $ad_id, 'close' );
                 if ( $close ) {
                     $JSujiPopups = array_merge( $JSujiPopups, array( 'showclose' => 'true' ) );
                 }
-                
+
                 //Class
                 $class = $this->get_interad( $ad_id, 'class' );
                 if ( $class != 'center' ) {
                     $JSujiPopups = array_merge( $JSujiPopups, array( 'location' => $class ) );
                 }
-                
+
                 //add JS vars
                 if ( !empty( $JSujiPopups ) ) {
                     wp_localize_script( $this->token . '-popups', 'ujiPopups', $JSujiPopups );
                 }
 
-                wp_enqueue_style( $this->token . '-modalcss' );
+                $stylecls = ( $close_style == 'modern' ) ? 'mod' : '';
+                wp_enqueue_style( $this->token . '-modalcss' . $stylecls );
                 wp_enqueue_style( $this->token . '-popups' );
                 wp_enqueue_script( $this->token . '-modal' );
                 wp_enqueue_script( $this->token . '-popups' );
@@ -291,27 +295,27 @@ class Uji_Popups extends Uji_Popups_Functions {
 
             $html_ad .= '<!-- Uji Popup Plugin -->
 					
-						<div id="popup" ' . $style_main . '>';
+		<div id="popup" class="ujipopup" ' . $style_main . '>';
 
 
             if ( $timer && !empty( $show_timer ) && $show_timer == 'yes' )
                 $html_ad .= '<div id="popups-bar" ' . $style_bar . '>
-										<div id="popups-tit" class="popups">' . $this->get_interad( $ad_id, 'title' ) . '</div>
-										<div id="popups-close">
-					  						  <div id="inter-mess" ' . $bor_style . '>
-												<span> ' . $tra_wait . ' </span>
-												<span data-seconds="' . $countdown . '" class="popups-kkcount-down"></span>
-												<span> ' . $tra_until . ' </span>
-											  </div>	
-										</div>
-									</div>';
+                                    <div id="popups-tit" class="popups">' . $this->get_interad( $ad_id, 'title' ) . '</div>
+                                    <div id="popups-close">
+                                              <div id="inter-mess" ' . $bor_style . '>
+                                                    <span> ' . $tra_wait . ' </span>
+                                                    <span data-seconds="' . $countdown . '" class="popups-kkcount-down"></span>
+                                                    <span> ' . $tra_until . ' </span>
+                                              </div>	
+                                    </div>
+                            </div>';
 
 
             $html_ad .= '<div id="popups-cnt" ' . $style_cont . '>
-									' . $this->get_interad( $ad_id ) . '
-								 </div>
-							
-						  </div><!-- Uji Popup Plugin by @wpmanage.com-->' . "\n";
+                                ' . $this->get_interad( $ad_id ) . '
+                         </div>
+
+              </div><!-- Uji Popup Plugin by @wpmanage.com-->' . "\n";
 
             //Post AD content
             if ( !empty( $html_ad ) && !$this->is_cached() ) {

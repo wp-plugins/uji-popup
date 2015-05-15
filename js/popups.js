@@ -96,6 +96,7 @@ function popups_count(){
 function open_lightbox(){
         var isClose = ( ujiPopups.showclose ) ? true : false;
 	jQuery("#popup").modaluji({
+            closeText: '×',
             fadeDuration: 500,
             fadeDelay: 0.50,
             zIndex: 99999,

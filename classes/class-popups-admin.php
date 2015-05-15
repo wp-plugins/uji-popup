@@ -296,6 +296,8 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 					#favorite-actions {display:none;}
 					.add-new-h2{display:none;}
 					.tablenav{display:none;}
+                                        .post-type-popups .wp-list-table tr:not(:first-child){ display: none; }
+                                        .post-type-popups .subsubsub, .post-type-popups .search-box{ display: none; }
 			  </style>';
 	}
 	
@@ -306,6 +308,7 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 	public function add_popup_css_one( ){
 		echo '<style type="text/css">
 					#wp-admin-bar-new-popups {display:none;}
+                                        
 			  </style>';
 	}
 	

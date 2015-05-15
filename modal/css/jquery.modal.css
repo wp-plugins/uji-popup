@@ -1,6 +1,5 @@
 .ujimodal {
   display: none;
-  width: 400px;
   background: #fff;
   padding: 15px 30px;
   -webkit-box-shadow: 0 0 10px #000;
@@ -21,7 +20,7 @@
   background: url(close.png) no-repeat 0 0;
 }
 
-.ujimodal-spinner {
+.modal-spinner {
   display: none;
   width: 64px;
   height: 64px;

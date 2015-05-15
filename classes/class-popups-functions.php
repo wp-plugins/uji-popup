@@ -11,8 +11,8 @@ class Uji_Popups_Functions {
 		$args = array(
 			 'post_type'     	 => 'popups',
 			 'post_status' 		 => 'publish',
-			 'order' 			 => 'DESC',
-			 'orderby'			 => 'date',
+			 'order' 		 => 'DESC',
+			 'orderby'		 => 'date',
 			 'posts_per_page'	 => 1
 			 
 		);

@@ -80,7 +80,15 @@ class Uji_Popups_Admin_API{
 								'type' => 'color',
 								'default' => '#ffffff', 
 								'section' => 'style-options'
-								);	
+								);
+                $fields['close_style'] = array(
+								'name' => __( 'Close Button Style', 'ujipopup' ), 
+								'description' => __( 'Select close button style', 'ujipopup' ), 
+								'type' => 'radio',
+								'default' => 'classic', 
+                                                                'options' => array( 'classic' => __( 'Classic', 'ujipopup' ), 'modern' => __( 'Modern', 'ujipopup' ) ), 
+								'section' => 'style-options'
+								);
 																												
 		$fields['cache_in']  = array(
 								'name' => __( '<span style="color:red; font-weight: bold">Cache Plugin</span>', 'ujipopup' ), 
@@ -241,6 +249,27 @@ class Uji_Popups_Admin_API{
 				echo '<p><span class="description">' . esc_html( $args['desc'] ) . '</span></p>' . "\n";
 			}
 	} // End form_field_text()
+        
+        /**
+	 * form_field_checkbox function.
+	 * 
+	 * @access public
+	 * @since 1.2
+	 */
+        public function form_field_radio ( $args ) {
+		//$options = $this->get_settings();
+                if ( isset( $args['options'] ) && ( count( (array)$args['options'] ) > 0 ) ) {
+                        $html = '';
+                        foreach ( $this->fields[$args['key']]['options'] as $k => $v ) {
+                                $html .= '<input type="radio" id="' . $this->token . '[' . $v . ']" name="' . $this->token . '[' . esc_attr( $args['key'] ) . ']" value="' . esc_attr( $k ) . '"' . checked(  esc_attr( $args['data'] ), $k, false ) . ' /> <label for="' . $this->token . '[' . $v . ']">' . $v . '</label><br />' . "\n";
+                        }
+                        echo $html;
+
+                        if ( isset( $args['desc'] ) ) {
+				echo '<p><span class="description">' .  $args['desc']  . '</span></p>' . "\n";
+			}
+                }
+	} // End form_field_radio()
 	
 	/**
 	 * message field.

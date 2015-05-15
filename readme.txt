@@ -2,8 +2,8 @@
 Contributors: ujimoto
 Tags: onclick popup, optin popup, pop-up, pop-ups, popup, popup ads, popup advertising, popup box, popup form, popup message, popup window, popups, modal, modals, unblockable, wordpress popup, auto open, automatic popup, conversion, conversions, custom popup, dialog box, exit intent, fancy box, fancy popup, form modal, post popup, page popup, screen popup, marketing
 Requires at least: 3.0
-Tested up to: 4.1
-Stable tag: 1.1.2
+Tested up to: 4.2
+Stable tag: 1.2
 
 Uji Popup - Create your custom popup.
 
@@ -51,6 +51,11 @@ WPmanage [(http://www.wpmanage.com/uji-popup/)](http://www.wpmanage.com/uji-popu
 Contact us for support: info@wpmanage.com
 
 == Changelog ==
+
+= 1.2 =
+
+* Added: New modern style popup
+* Bug Fix: Minimum width size
 
 = 1.1.2 =
 
