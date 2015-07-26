@@ -106,7 +106,7 @@ class Uji_Popups_Functions {
 	 */
 	protected function int_option ( $name, $default = NULL ) {
 		$val = get_option( $this->token );
-		
+                
 		if( !empty( $val[$name] ) )
 			return $val[$name];
 		elseif( $default && !empty( $val[$name] ) )
@@ -202,30 +202,38 @@ class Uji_Popups_Functions {
                           $style .= 'overflow: hidden;';
            
 			  return $style;
-		  break;  
-		case 'close':
-			 $close  = get_post_meta( $id, 'add_close', true );
-		  	 return ($close == "yes") ? true  : false;
 		  break;
+                case 'exit':
+                        $exit_intent = get_post_meta( $id, 'exit_intent', true );
+                        return ( $exit_intent == "yes") ? true : false;
+                        break;    
+		case 'closeout':
+			$close_out  = get_post_meta( $id, 'close_out', true );
+		  	return ($close_out == "yes") ? true  : false;
+                        break;
+                case 'close':
+			$close  = get_post_meta( $id, 'add_close', true );
+		  	return ($close == "yes") ? true  : false;
+                        break;  
                 case 'class':
                         $class = get_post_meta( $id, 'pop_location', true );
                         return (!empty($class)) ? $class : false;
-                  break;
+                        break;
 		case 'timer':
-			 $timer  = get_post_meta( $id, 'show_count', true );
-		  	 return ($timer == "yes") ? true  : false;
-		  break;  
+			$timer  = get_post_meta( $id, 'show_count', true );
+		  	return ($timer == "yes") ? true  : false;
+                        break;  
 		case 'wait':
-			 //$wtimer  = get_post_meta( $id, 'show_count', true );
-                         $swait   = get_post_meta( $id, 'wait_time', true );
-		  	 return ( $swait == 'yes' ) ? true  : false;
-		  break;
+			//$wtimer  = get_post_meta( $id, 'show_count', true );
+                        $swait   = get_post_meta( $id, 'wait_time', true );
+		  	return ( $swait == 'yes' ) ? true  : false;
+                        break;
                 case 'shortcode':
-			 $short  = get_post_meta( $id, 'where_show', true );
-		  	 return ($short == "show_short") ? true  : false;
-		  break;
+			$short  = get_post_meta( $id, 'where_show', true );
+		  	return ($short == "show_short") ? true  : false;
+                        break;
 		default:
-		  	  return $this->get_content( $id );
+		  	return $this->get_content( $id );
 		} 
 		
 	}

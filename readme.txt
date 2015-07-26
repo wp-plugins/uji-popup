@@ -2,18 +2,18 @@
 Contributors: ujimoto
 Tags: onclick popup, optin popup, pop-up, pop-ups, popup, popup ads, popup advertising, popup box, popup form, popup message, popup window, popups, modal, modals, unblockable, wordpress popup, auto open, automatic popup, conversion, conversions, custom popup, dialog box, exit intent, fancy box, fancy popup, form modal, post popup, page popup, screen popup, marketing
 Requires at least: 3.0
-Tested up to: 4.2
-Stable tag: 1.2
+Tested up to: 4.2.3
+Stable tag: 1.3
 
 Uji Popup - Create your custom popup.
 
 == Description ==
 
-Uji Popup is a WordPress popup plugin which allown you to convert visitors on your site/blog into taking an action whether its advertise, subscribing into your newsletter, offering a discount or cupon. The popup messages are displayed as soon as the visitors opens the page.
-
+Uji Popup is a WordPress popup plugin which allown you to convert visitors on your site/blog into taking an action whether its advertise, subscribing into your newsletter, offering a discount or cupon. The popup messages are displayed as soon as the visitors opens the page. Shows dynamically when a visitor goes to close your website.
 
 = Features: =
 
+* NEW: Exit-Intent technology has been one of the most successful Internet marketing techniques
 * Popups are shown when the page is loaded
 * Use image ads or text ads (Flash, HTML, Images, Videos, Audio, Embed Code etc.)
 * Timer(countdown) can be enabled/disabled
@@ -51,6 +51,12 @@ WPmanage [(http://www.wpmanage.com/uji-popup/)](http://www.wpmanage.com/uji-popu
 Contact us for support: info@wpmanage.com
 
 == Changelog ==
+
+= 1.3 =
+
+* Added: Exit-intent technology
+* Added: Option allows the user to close the modal by clicking the overlay (outside)
+* Fix: minor admin style fixes 
 
 = 1.2 =
 

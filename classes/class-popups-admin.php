@@ -63,6 +63,9 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 		
 		//Remove
 		add_action( 'admin_head', array( &$this, 'remove_pop' ) );
+                
+                //Admin Notice
+                add_action( 'admin_notices', array( &$this, 'free_options' ) );
 		
 	}
 
@@ -355,6 +358,7 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 		}
 		
 		add_meta_box( 'postwhere', __('Where to show', 'ujipopup'), array( &$this, 'popups_where' ), 'popups', 'normal' );
+                add_meta_box( 'postsettings', __('Settings', 'ujipopup'), array( &$this, 'popups_settings' ), 'popups', 'normal' );
 		add_meta_box( 'styles', __('Popup Style', 'ujipopup'), array( &$this, 'popups_style' ), 'popups', 'side' );	
 		add_meta_box( 'getpro', __('Uji Popup Premium', 'ujinter'), array( &$this, 'popups_prover' ), 'popups', 'side' );	
 		
@@ -376,7 +380,7 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 		<div class="tab-pane" id="int-tab-1">
 				<div class="options_group tab-space">
 				<p class="form-field">
-					<label for="include_html"><?php _e("Includ this Popup", 'ujipopup') ?></label>  
+					<label for="include_html"><?php _e("Include this Popup", 'ujipopup') ?></label>  
 					<input id="include_html" class="checkbox" type="checkbox" value="yes" name="include_html" <?php checked( $this->get_opt( $post->ID, 'include_html' ), 'yes' ) ?>> 
                                         <span class="description"><?php _e("Enabld/Disable this popup", 'ujipopup') ?>
 				</p>
@@ -459,12 +463,33 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
                <div style="background-color: #f6f6f6; color: #0074a2; padding: 14px 16px; display: inline-block; margin-left: 178px; border: 1px solid #969696;">
                   <span style="font-weight: bold;">[uji_popup class="<span class="uji_class"></span>" id="<?php echo $post->ID; ?>"]</span> replace with: text, banner or image here <span style="font-weight: bold;">[/uji_popup]</span>
                </div>
-               <span style="display: block; margin: 4px 0 0 178px;" class="description">Copy one of the two shortcode options and paste it where you want to have the click link</span>
+               <span style="display: block; margin: 4px 0 0 178px;" class="description">Copy the shortcode above and paste it where you want to have the click link</span>
 				</p>
                
 			   </div> 
 			  
 			</div>
+	<?php 
+	}
+        
+         /**
+	 * Popup settings
+	 * @since  1.0
+	 */
+	public function popups_settings( $post ) {
+	?>	
+            <div class="tab-content">
+
+                <!-- Settings Options -->
+                <div class="options_group">
+                    <p class="form-field">
+                        <label for="post_mobile"><?php _e( "Exit-intent", 'ujipopup' ) ?></label>  
+                        <input id="exit_intent" class="checkbox" type="checkbox" value="yes" name="exit_intent" <?php checked( $this->get_opt( $post->ID, 'exit_intent' ), 'yes' ) ?>> 
+                        <span class="description"><?php _e( "Shows dynamically when a visitor goes to close your website (Show popup once).", 'ujipopup' ) ?></span>
+                    </p>
+                </div>    
+
+            </div>
 	<?php 
 	}
 	
@@ -476,7 +501,7 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 		?>
                 <div class="tab-content side-content">
                     <div class="control-group chkbox2">
-                        <label class="size-label" for="add_close"><?php _e("Enable Autosize:", 'ujipopup') ?></label>  
+                        <label class="size-label" for="auto_size"><?php _e("Enable Autosize:", 'ujipopup') ?></label>  
                         <input id="auto_size" class="checkbox" type="checkbox" value="yes" name="auto_size" <?php checked($this->get_opt($post->ID, 'auto_size'), 'yes') ?>>
                         <div class="howto"><?php _e("Leave the Height and Width empty", 'ujipopup') ?></div>
                     </div>     
@@ -486,7 +511,7 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
                             <input class="small-text" size="16" type="text" name="width1" value="<?php echo $this->get_opt($post->ID, '_width1') ?>"> <span> px</span>
                         </p>
                         <p>
-                            <label class="size-label" for="width1"><?php _e("Popup Height", 'ujipopup') ?>:</label>
+                            <label class="size-label" for="height1"><?php _e("Popup Height", 'ujipopup') ?>:</label>
                             <input class="small-text" size="16" type="text" name="height1" value="<?php echo $this->get_opt($post->ID, '_height1') ?>"> <span> px</span>
                         <div class="howto"><?php _e("Height size is auto determined if it is empty", 'ujipopup') ?></div>
                         </p>
@@ -516,18 +541,22 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
                         <label class="size-label" for="add_close"><?php _e("Show Close Button:", 'ujipopup') ?></label>  
                         <input id="add_close" class="checkbox" type="checkbox" value="yes" name="add_close" <?php checked($this->get_opt($post->ID, 'add_close'), 'yes') ?>>
                     </div>
+                    <div class="control-group chkbox2">
+                        <label class="size-label" for="close_out"><?php _e("Close Click Outside:", 'ujipopup') ?></label>  
+                        <input id="close_out" class="checkbox" type="checkbox" value="yes" name="close_out" <?php checked($this->get_opt($post->ID, 'close_out'), 'yes') ?>>
+                    </div>
 
                     <?php
                     $is = $this->get_sett('show_timer');
                     if ( $is == "yes" ):
                         ?>
                         <div class="control-group chkbox2">
-                            <label class="size-label" for="add_close"><?php _e("Show Countdown:", 'ujipopup') ?></label>  
+                            <label class="size-label" for="show_count"><?php _e("Show Countdown:", 'ujipopup') ?></label>  
                             <input id="show_counter" class="checkbox" type="checkbox" value="yes" name="show_count" <?php checked($this->get_opt($post->ID, 'show_count'), 'yes') ?>>
                         </div>
 
                         <div class="control-group chkbox2">
-                            <label class="size-label" for="add_close"><?php _e("Enable Wait Time:", 'ujipopup') ?></label>  
+                            <label class="size-label" for="wait_time"><?php _e("Enable Wait Time:", 'ujipopup') ?></label>  
                             <input id="wait_time" class="checkbox" type="checkbox" value="yes" name="wait_time" <?php checked($this->get_opt($post->ID, 'wait_time'), 'yes') ?>>
                         </div>
                     <?php endif; ?>
@@ -546,15 +575,26 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 	public function popups_prover( $post ) {
 		echo '<a href="http://www.wpmanage.com/uji-popup" target="_blank"><img src="'.plugins_url() . '/uji-popup/images/popup-premium.png" style="padding-left:2px" /></a>';
 	}
+        
+        public function free_options() {
+                $is_error = wp_count_posts('popups');
+                
+                if ($is_error->publish > 1):
+            ?>
+                    <div class="update-nag">
+                        <p>The Free version support only one Popup. Please <a href="http://www.wpmanage.com/uji-popup"> Upgrade</a> for <strong>multiple Popups<strong> </p>
+                    </div>
+            <?php
+                endif;
+        }
 	
 	/**
 	 * Save post
 	 * @since  1.0
 	 */
 	public function popups_save( $post_id ) {
-	
-	
-	
+                $is_error = wp_count_posts('popups');
+                if ($is_error->publish > 1) return;
 		if ( !$_POST ) return $post_id;
 		if ( is_int( wp_is_post_revision( $post_id ) ) ) return;
 		if ( is_int( wp_is_post_autosave( $post_id ) ) ) return;
@@ -570,6 +610,8 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 			}
 			if( isset($_POST['pop_posts'] ) ) update_post_meta($post_id, 'pop_posts', esc_html(stripslashes($_POST['pop_posts']))); else update_post_meta($post_id, 'pop_posts', '');
                         if( isset($_POST['pop_class'] ) ) update_post_meta($post_id, 'pop_class', esc_html(stripslashes($_POST['pop_class']))); else update_post_meta($post_id, 'pop_class', '');
+                        
+                        if( isset($_POST['exit_intent'] ) ) update_post_meta($post_id, 'exit_intent', esc_html(stripslashes($_POST['exit_intent']))); else update_post_meta($post_id, 'exit_intent', '');
 			
                         if( isset($_POST['pop_location'] ) ) update_post_meta($post_id, 'pop_location', esc_html(stripslashes($_POST['pop_location']))); else update_post_meta($post_id, 'pop_location', '');
                         if( isset($_POST['auto_size'] ) ) update_post_meta($post_id, 'auto_size', esc_html(stripslashes($_POST['auto_size']))); else update_post_meta($post_id, 'auto_size', '');
@@ -580,6 +622,7 @@ class Uji_Popups_Admin extends Uji_Popups_Admin_API{
 			if( isset($_POST['pop_bottom'] ) ) update_post_meta($post_id, 'pop_bottom', esc_html(stripslashes($_POST['pop_bottom']))); else update_post_meta($post_id, 'pop_bottom', '');
 			if( isset($_POST['pop_left'] ) ) update_post_meta($post_id, 'pop_left', esc_html(stripslashes($_POST['pop_left']))); else update_post_meta($post_id, 'pop_left', '');
 			if( isset($_POST['add_close'] ) ) update_post_meta($post_id, 'add_close', esc_html(stripslashes($_POST['add_close']))); else update_post_meta($post_id, 'add_close', '');
+                        if( isset($_POST['close_out'] ) ) update_post_meta($post_id, 'close_out', esc_html(stripslashes($_POST['close_out']))); else update_post_meta($post_id, 'close_out', '');
 			if( isset($_POST['show_count'] ) ) update_post_meta($post_id, 'show_count', esc_html(stripslashes($_POST['show_count']))); else update_post_meta($post_id, 'show_count', '');
 			if( isset($_POST['wait_time'] ) ) update_post_meta($post_id, 'wait_time', esc_html(stripslashes($_POST['wait_time']))); else update_post_meta($post_id, 'wait_time', '');
 			

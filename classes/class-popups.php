@@ -162,6 +162,11 @@ class Uji_Popups extends Uji_Popups_Functions {
             if ( !empty( $wait_time ) && (int) $wait_time > 0 && $wait ) {
                 $JSujiPopups = array_merge( $JSujiPopups, array( 'is_wait' => $wait_time ) );
             }
+            //Exit-intent
+            $exit_intent = $this->get_interad( $ad_id, 'exit' );
+            if ( !empty( $exit_intent ) && $exit_intent == 'yes' ) {
+                $JSujiPopups = array_merge( $JSujiPopups, array( 'exit_intent' => $exit_intent ) );
+            }
             //Timing	
             if ( $timer ) {
 
@@ -179,13 +184,17 @@ class Uji_Popups extends Uji_Popups_Functions {
                     $JSujiPopups = array_merge( $JSujiPopups, array( 'minutes' => $tra_minutes ) );
                 }
             }
-
+            
+            //Close  outside
+            $closeout = $this->get_interad( $ad_id, 'closeout' );
+            if ( !empty( $closeout ) && $closeout == 'yes' ) {
+                $JSujiPopups = array_merge( $JSujiPopups, array( 'closeout' => 'true' ) );
+            }
             //Close button
             $close = $this->get_interad( $ad_id, 'close' );
             if ( $close ) {
                 $JSujiPopups = array_merge( $JSujiPopups, array( 'showclose' => 'true' ) );
             }
-
             //Class
             $class = $this->get_interad( $ad_id, 'class' );
             if ( $class != 'center' ) {
@@ -231,7 +240,12 @@ class Uji_Popups extends Uji_Popups_Functions {
             if ( !$this->is_cached() ) {
 
                 $JSujiPopups = array();
-
+                
+                //Exit-intent
+                $exit_intent = $this->get_interad( $ad_id, 'exit' );
+                if ( !empty( $exit_intent ) && $exit_intent == 'yes' ) {
+                    $JSujiPopups = array_merge( $JSujiPopups, array( 'exit_intent' => $exit_intent ) );
+                }
                 //Timing		
                 if ( !empty( $wait_time ) && (int) $wait_time > 0 && $wait ) {
                     $JSujiPopups = array( 'is_wait' => $wait_time );
@@ -268,7 +282,12 @@ class Uji_Popups extends Uji_Popups_Functions {
                     //add impression
                     $this->impression( $ad_id );
                 }
-
+                
+                //Close  outside
+                $closeout = $this->get_interad( $ad_id, 'closeout' );
+                if ( !empty( $closeout ) && $closeout == 'yes' ) {
+                    $JSujiPopups = array_merge( $JSujiPopups, array( 'closeout' => 'true' ) );
+                }
                 //Close button
                 $close = $this->get_interad( $ad_id, 'close' );
                 if ( $close ) {

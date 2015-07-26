@@ -64,8 +64,8 @@
    overflow: auto;
     box-sizing: border-box;
 }
-#popups-cnt a{
-	
+#popups-cnt a img{
+    vertical-align: middle;
 }
 #popups-cnt > p{
     padding: 0;
