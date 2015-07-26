@@ -1,0 +1,174 @@
+li.menu-icon-popups .wp-menu-image a img { display: none; }
+#icon-popups, #icon-post.icon32-posts-popups, #icon-edit.icon32-posts-popups { background: transparent url(../images/icon_popups_32.png) no-repeat left top; }
+/*
+#menu-posts-popups div.wp-menu-image  { background: url(../images/icon_popups_16.png) no-repeat left top; width: 20px; height: 16px; margin-left: 7px; margin-top: 7px; background-position: left 0!important; }
+#menu-posts-popups:hover div.wp-menu-image, #menu-posts-popups .wp-has-current-submenu div.wp-menu-image  { background-position: left -16px!important; }*/
+
+
+/* =============================================================================
+   Add Content Panel
+   ========================================================================== */
+
+
+.tab-content {
+    overflow: hidden!important;
+}
+
+#postexcerpt_wp4 {
+    margin-top: 10px;
+}
+
+#wp-excerpt-editor-container {
+    background: none repeat scroll 0 0 #FFFFFF;
+}
+
+#cont_tab a{
+	text-decoration: none;
+}
+.tab-space{
+	margin-bottom: 10px;
+}
+.tab-content .options_group {
+    border-bottom: 1px solid #DFDFDF;
+    border-top: 1px solid white;
+    padding: 10px 0;
+}
+.tab-content .options_group:first-child {
+    border-top: 0 none;
+}
+
+
+.tab-content .dimensions_field .wrap input {
+    margin-right: 0.2%;
+    width: 6.6%;
+}
+.tab-content .dimensions_field .wrap .last {
+    margin-right: 0;
+}
+.tab-content label {
+    float: left;
+    padding: 0;
+    width: 170px;
+}
+
+.tab-content .checkbox, .tab-content .radio {
+    margin: 7px 0;
+    vertical-align: middle;
+    width: auto;
+}
+
+.tab-content .short {
+    width: 20%;
+}
+.tab-content .medium {
+    width: 40%;
+}
+
+.tab-content .description {
+    margin: 0 0 0 7px;
+    padding: 0;
+}
+
+.tab-content p {
+    margin: 9px 0;
+    font-size: 12px;
+    line-height: 24px;
+    margin: 0 0 9px;
+    padding: 5px 9px;
+}
+
+.tab-content p:after, .tab-content p:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.side-content{
+	overflow: hidden!important;
+}
+.side-content .howto{
+	float: none;
+	clear: both;
+}
+#dp1, #dp2, #wi1{
+	width: 250px;
+	float: none;
+	clear: both;
+	position: relative;
+}
+#wi1{
+	padding-top: 10px;
+}
+.datap-label{
+	width: 70px!important;
+	line-height: 26px;
+
+}
+.size-label{
+	width: 120px!important;
+	line-height: 25px;
+}
+#datapick1, #datapick2{
+	width: 110px;
+	float: left;
+}
+#width1{
+	width: 40px;
+	float: left;
+}
+.chkbox{
+	margin: 40px 0 0 0;
+	float: none;
+	clear: both;
+}
+.chkbox2{
+	margin: 20px 0 0 0;
+	float: none;
+	clear: both;
+}
+#wi1,
+.chkbox2{
+	border-bottom: 1px solid #dfdfdf;
+	padding-bottom: 10px;
+}
+
+.chkbox2 p{
+	padding: 0;
+	margin: 0;
+	line-height: 15px;
+}
+#wi1 span,
+.chkbox2 p label{
+	line-height: 25px
+}
+
+.chkbox label{
+	line-height: 15px;
+}
+.dclear{
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	text-decoration: none;
+	color: #b90000;
+	font-size: 12px;
+	font-weight: bold;
+	display: block;
+	position: absolute;
+	top: 5px;
+	right: 55px;
+}
+
+.colorpicker .add-on{
+	display: block;
+}
+.colorpicker .span1{
+	float: left;
+	margin-left: 30px;
+}
+
+.select2 p{
+    padding: 0 0 10px 0;
+}
+.select2 p label{
+	width: 110px!important;
+}

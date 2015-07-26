@@ -1,0 +1,441 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PlaceHolder\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-25 21:23+0200\n"
+"PO-Revision-Date: 2013-02-25 21:23+0200\n"
+"Last-Translator: Ujimoto <info@wpmanage.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: ../\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: classes/class-popups-admin-settings.php:31
+msgid "Styling Options"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:32
+msgid "Customize colors for all ads."
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:36
+msgid "General Setings"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:37
+msgid "This settings apply to all active Ads"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:41
+msgid "Translate texts"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:42
+msgid "Customise the texts"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:62
+msgid "Top Bar Background Color"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:63
+msgid "Select top bar background color. Default is black"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:70
+msgid "Top Bar Text Color"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:71
+msgid "Select title color. Default is white"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:78
+msgid "Content Background"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:79
+msgid "Select background color. Default is white"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:86
+msgid "<span style=\"color:red; font-weight: bold\">Cache Plugin</span>"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:87
+msgid "Enable it if using cache plugin such: WP Super Cache or W3 Total Cache. <span style=\"color: red\">Please Delete Cached Pages after enabled this feature! </span>"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:90
+#: classes/class-popups-admin-settings.php:99
+msgid "Yes"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:90
+#: classes/class-popups-admin-settings.php:99
+msgid "No"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:95
+msgid "Show countdown"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:96
+msgid "Choose to show countdown timer"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:104
+msgid "Countdown Length"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:105
+msgid "Enter how long the popups ad will be shows until closing itself. Default is 15 seconds"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:108
+#: classes/class-popups-admin-settings.php:117
+msgid "5 seconds"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:108
+#: classes/class-popups-admin-settings.php:117
+msgid "10 seconds"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:108
+#: classes/class-popups-admin-settings.php:117
+msgid "15 seconds"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:108
+#: classes/class-popups-admin-settings.php:117
+msgid "20 seconds"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:108
+msgid "25 seconds"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:108
+#: classes/class-popups-admin-settings.php:117
+msgid "30 seconds"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:108
+#: classes/class-popups-admin-settings.php:117
+msgid "1 minute"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:108
+#: classes/class-popups-admin-settings.php:117
+msgid "2 minutes"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:113
+msgid "Wait Time"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:114
+msgid "Enter how long the popups shoult wait until will be shown. Default is 0 seconds. Shows instantly."
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:117
+msgid "0 seconds"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:123
+msgid "\"Wait\" Text"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:124
+msgid "The text to display on the \"Wait\" message."
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:130
+msgid "\"Seconds\" Text"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:131
+msgid "The text to display on the \"seconds\" message in countdown text."
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:137
+msgid "\"Minutes\" Text"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:138
+msgid "The text to display on the \"minutes\" message in countdown text."
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:144
+msgid "\"until will close\" Text"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:145
+msgid "The text to display on the \"until will close\" message."
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:151
+msgid "Message Preview:"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:313
+msgid "Please empty cache!"
+msgstr ""
+
+#: classes/class-popups-admin-settings.php:315
+#, php-format
+msgid "%s updated %s"
+msgstr ""
+
+#: classes/class-popups-admin.php:20
+msgid "Uji Popup Options"
+msgstr ""
+
+#: classes/class-popups-admin.php:64
+msgid "Popup"
+msgstr ""
+
+#: classes/class-popups-admin.php:64
+msgid "Popups"
+msgstr ""
+
+#: classes/class-popups-admin.php:64
+msgid "Uji Popup +"
+msgstr ""
+
+#: classes/class-popups-admin.php:103
+msgctxt "column name"
+msgid "Popup Title"
+msgstr ""
+
+#: classes/class-popups-admin.php:104
+msgctxt "column name"
+msgid "Valability"
+msgstr ""
+
+#: classes/class-popups-admin.php:105
+msgctxt "column name"
+msgid "Impressions"
+msgstr ""
+
+#: classes/class-popups-admin.php:128
+msgid "Unlimited"
+msgstr ""
+
+#: classes/class-popups-admin.php:157
+#, php-format
+msgctxt "post type general name"
+msgid "%s"
+msgstr ""
+
+#: classes/class-popups-admin.php:158
+#, php-format
+msgctxt "post type singular name"
+msgid "%s"
+msgstr ""
+
+#: classes/class-popups-admin.php:160
+#, php-format
+msgid "Add New %s"
+msgstr ""
+
+#: classes/class-popups-admin.php:161
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: classes/class-popups-admin.php:162
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#: classes/class-popups-admin.php:163
+#, php-format
+msgid "All %s"
+msgstr ""
+
+#: classes/class-popups-admin.php:164
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: classes/class-popups-admin.php:165
+#, php-format
+msgid "Search %s"
+msgstr ""
+
+#: classes/class-popups-admin.php:166
+#, php-format
+msgid "No %s found"
+msgstr ""
+
+#: classes/class-popups-admin.php:167
+#, php-format
+msgid "No %s found in Trash"
+msgstr ""
+
+#: classes/class-popups-admin.php:240
+msgid "Uji Popup"
+msgstr ""
+
+#: classes/class-popups-admin.php:240
+msgid "Ad Options"
+msgstr ""
+
+#: classes/class-popups-admin.php:260
+msgid "Popup Content"
+msgstr ""
+
+#: classes/class-popups-admin.php:263
+msgid "Where to show"
+msgstr ""
+
+#: classes/class-popups-admin.php:264
+msgid "Where not to show"
+msgstr ""
+
+#: classes/class-popups-admin.php:265
+msgid "Popup Style"
+msgstr ""
+
+#: classes/class-popups-admin.php:266
+msgid "When to show"
+msgstr ""
+
+#: classes/class-popups-admin.php:278
+msgid "Text/Html"
+msgstr ""
+
+#: classes/class-popups-admin.php:279
+msgid "Link Url"
+msgstr ""
+
+#: classes/class-popups-admin.php:280
+msgid "Post/Pages"
+msgstr ""
+
+#: classes/class-popups-admin.php:281
+msgid "Settings"
+msgstr ""
+
+#: classes/class-popups-admin.php:290
+#: classes/class-popups-admin.php:312
+msgid "Included as Popup"
+msgstr ""
+
+#: classes/class-popups-admin.php:321
+msgid "Add Link URL"
+msgstr ""
+
+#: classes/class-popups-admin.php:334
+msgid "Select From Posts/Pages"
+msgstr ""
+
+#: classes/class-popups-admin.php:336
+#: classes/class-popups-admin.php:404
+#: classes/class-popups-admin.php:425
+msgid "Add any pages or posts id separated by commas. ex: 312, 16, 27"
+msgstr ""
+
+#: classes/class-popups-admin.php:346
+msgid "Post Random"
+msgstr ""
+
+#: classes/class-popups-admin.php:348
+msgid "Select this to show all selected URL links or Posts/Pages randomly."
+msgstr ""
+
+#: classes/class-popups-admin.php:353
+msgid "Show just once only per user"
+msgstr ""
+
+#: classes/class-popups-admin.php:355
+msgid "Show only one time based on cookie."
+msgstr ""
+
+#: classes/class-popups-admin.php:375
+msgid "Enable on Home Page"
+msgstr ""
+
+#: classes/class-popups-admin.php:377
+msgid "Show Popup on Home Page"
+msgstr ""
+
+#: classes/class-popups-admin.php:384
+msgid "Enable on All Pages"
+msgstr ""
+
+#: classes/class-popups-admin.php:386
+msgid "Show Popup on entire site"
+msgstr ""
+
+#: classes/class-popups-admin.php:393
+msgid "Enable on Custom Pages"
+msgstr ""
+
+#: classes/class-popups-admin.php:395
+msgid "Show Popup on selected Pages/Posts"
+msgstr ""
+
+#: classes/class-popups-admin.php:402
+#: classes/class-popups-admin.php:423
+msgid "Select Posts/Pages"
+msgstr ""
+
+#: classes/class-popups-admin.php:441
+msgid "Popup Width"
+msgstr ""
+
+#: classes/class-popups-admin.php:446
+msgid "Top"
+msgstr ""
+
+#: classes/class-popups-admin.php:448
+msgid "Right"
+msgstr ""
+
+#: classes/class-popups-admin.php:450
+msgid "Bottom"
+msgstr ""
+
+#: classes/class-popups-admin.php:452
+msgid "Left"
+msgstr ""
+
+#: classes/class-popups-admin.php:456
+msgid "Show Close Button"
+msgstr ""
+
+#: classes/class-popups-admin.php:465
+msgid "Show Countdown"
+msgstr ""
+
+#: classes/class-popups-admin.php:470
+msgid "Height size is auto determined"
+msgstr ""
+
+#: classes/class-popups-admin.php:483
+msgid "Start Date"
+msgstr ""
+
+#: classes/class-popups-admin.php:489
+msgid "End Date"
+msgstr ""
+
+#: classes/class-popups-admin.php:494
+msgid "Leave it empty if you want to work for unlimited time"
+msgstr ""
+
+#: classes/class-popups-functions.php:338
+msgid "None URL Ad found"
+msgstr ""
+
